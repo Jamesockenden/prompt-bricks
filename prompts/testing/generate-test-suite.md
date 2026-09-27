@@ -7,7 +7,7 @@ description: "Unit and integration tests with Mockito, Testcontainers, and bound
 tags: ["testing","junit5","testcontainers","quality"]
 commitHash: "2b4c89a"
 lastModified: "2026-09-26"
-author: "qa-guild"
+author: "AI Generated"
 params: [{"id":"test_framework","name":"test_framework","label":"Unit Test Framework","type":"select","defaultValue":"JUnit 5 + Mockito + AssertJ","options":["JUnit 5 + Mockito + AssertJ","Spock Framework (Groovy)","pytest + pytest-mock"],"description":"Test runner and assertion library"},{"id":"target_coverage_percent","name":"target_coverage_percent","label":"Minimum Line/Branch Coverage %","type":"number","defaultValue":85,"description":"Target test coverage percentage"},{"id":"use_testcontainers","name":"use_testcontainers","label":"Use Real Containerized Dependencies (Testcontainers)","type":"boolean","defaultValue":true,"description":"Spin up real Postgres or Kafka containers for integration tests"}]
 ---
 

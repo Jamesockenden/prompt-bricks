@@ -7,7 +7,7 @@ description: "Automated container build, Trivy vulnerability scanning, SonarQube
 tags: ["cicd","harness","devops","security-scan"]
 commitHash: "f72a110"
 lastModified: "2026-09-25"
-author: "devops-enablement"
+author: "AI Generated"
 params: [{"id":"pipeline_system","name":"pipeline_system","label":"CI/CD Platform","type":"select","defaultValue":"Harness CI/CD","options":["Harness CI/CD","GitHub Actions Workflow","GitLab CI"],"description":"Target continuous deployment syntax"},{"id":"trivy_severity_threshold","name":"trivy_severity_threshold","label":"Trivy Scan Blocking Severity","type":"select","defaultValue":"HIGH,CRITICAL","options":["CRITICAL","HIGH,CRITICAL","MEDIUM,HIGH,CRITICAL"],"description":"Vulnerability level that fails the build step"},{"id":"canary_traffic_split","name":"canary_traffic_split","label":"Initial Canary Traffic %","type":"number","defaultValue":10,"description":"Percentage of live traffic routed to the canary candidate"}]
 ---
 

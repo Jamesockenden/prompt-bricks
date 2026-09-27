@@ -7,7 +7,7 @@ description: "OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotenc
 tags: ["task","rest-api","controller","openapi"]
 commitHash: "9d21af8"
 lastModified: "2026-09-25"
-author: "api-architecture"
+author: "AI Generated"
 params: [{"id":"resource_name","name":"resource_name","label":"Entity / Resource Name","type":"string","defaultValue":"Order","placeholder":"e.g. Customer, Order, Payment, Inventory","description":"Primary domain resource managed by this endpoint"},{"id":"endpoint_base_path","name":"endpoint_base_path","label":"Endpoint Base URL Path","type":"string","defaultValue":"/api/v1/orders","placeholder":"/api/v1/...","description":"URI prefix for the controller route"},{"id":"enable_idempotency","name":"enable_idempotency","label":"Require Idempotency-Key Header on POST","type":"boolean","defaultValue":true,"description":"Prevent double-billing or duplicate entity creation"},{"id":"enable_cursor_pagination","name":"enable_cursor_pagination","label":"Implement Keyset/Cursor Pagination","type":"boolean","defaultValue":true,"description":"Provide after_cursor and limit parameters for collection queries"}]
 ---
 

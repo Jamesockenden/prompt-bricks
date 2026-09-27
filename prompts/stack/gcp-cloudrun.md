@@ -7,7 +7,7 @@ description: "Port 8080 binding, non-root execution, Workload Identity, fast sta
 tags: ["gcp","cloud-run","containers","serverless"]
 commitHash: "1e550bd"
 lastModified: "2026-09-24"
-author: "cloud-infrastructure"
+author: "AI Generated"
 params: [{"id":"port_binding","name":"port_binding","label":"HTTP Listener Port","type":"number","defaultValue":8080,"description":"Port read from the PORT environment variable"},{"id":"memory_limit","name":"memory_limit","label":"Container Memory Allocation","type":"select","defaultValue":"1Gi","options":["512Mi","1Gi","2Gi","4Gi"],"description":"Memory allocated to Cloud Run instance"},{"id":"concurrency_limit","name":"concurrency_limit","label":"Max Concurrent Requests Per Instance","type":"number","defaultValue":80,"description":"Cloud Run request multiplexing cap"}]
 ---
 

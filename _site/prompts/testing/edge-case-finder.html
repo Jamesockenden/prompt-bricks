@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edge Case Finder | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">All Bricks</a></li>
+        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Edge Case Finder</h1>
+    <div class="brick-meta">
+      <span>Category: <strong>testing</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/testing/edge-case-finder.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Find missing edge cases and failure scenarios in a specification or implementation.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h1 id="brick-edge-case-finder">Brick: Edge Case Finder</h1>
+
+<p><strong>Category:</strong> testing
+<strong>Purpose:</strong> Identify edge cases and failure scenarios a spec or implementation might be missing, before they become bugs.</p>
+
+<h2 id="prompt">Prompt</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Analyse the following feature/function for edge cases that are easy to
+miss. Think about:
+
+- Boundary values (empty, zero, negative, max size, off-by-one)
+- Unexpected input types or malformed data
+- Concurrency / ordering issues (if applicable)
+- Partial failure (network drop mid-operation, timeout, retry)
+- State/permission edge cases (first-time user, deleted resource,
+  race between two actions)
+- Locale/timezone/encoding quirks (if relevant)
+
+For each edge case, state: the scenario, why it's risky, and what the
+expected/desired behaviour should be. Do not write test code — this is
+an analysis pass, to feed into test writing separately.
+
+Feature / function description or code:
+"""
+{{target}}
+"""
+</code></pre></div></div>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{{target}}</code>: the spec, function, or feature description to analyse</li>
+</ul>
+
+<h2 id="example-composition">Example composition</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ Brick: Edge Case Finder ] + [ Brick: Unit Test Generator ]
+</code></pre></div></div>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

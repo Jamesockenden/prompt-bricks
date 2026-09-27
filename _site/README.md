@@ -1,59 +1,34 @@
-# prompt-brick-service
+# Prompt Brick Library
 
-> A modular prompt generator service exposed via GitHub Pages using Jekyll.
+A modular library of small, reusable prompts for composing task-specific instructions across the software development lifecycle (SDLC). Each Markdown file is also a Jekyll page, so bricks can be reviewed individually or selected in the site builder.
 
-## Prompt Pages
+## Compose a prompt
 
-Markdown files under `prompts/` are published as individual prompt pages and
-listed in the catalog at the site root. For example,
-`prompts/core/architecture-guardrails.md` is served at
-`/prompts/core/architecture-guardrails.html`. Prompt template expressions such
-as `{{secret_manager_provider}}` and `{{#if ...}}` are preserved as written.
+1. Start with one task brick that describes the work to do.
+2. Add only the supporting bricks that apply: requirements, architecture, codebase or stack context, testing, review, or output format.
+3. Replace every `{{placeholder}}` with concrete project information. Remove optional instructions that do not apply.
+4. Check selected bricks for conflicting directions. Prefer the more specific requirement when two bricks overlap.
+5. Build, review, and copy the combined prompt; include the relevant source code, ticket, logs, or other inputs when you send it to your assistant.
 
-To build the site locally, run `bundle exec jekyll build`; the generated pages
-are written to `_site/`.
+For example, an implementation prompt might combine **Acceptance Criteria**, **Implement from Spec**, **Java 21 & Spring Boot**, and **Unit Test Generator**. A security review might combine **Security Audit**, **Architecture Guardrails**, and **PR Review**.
 
-The catalog includes a prompt builder: select one or more bricks, combine their
-contents in the selected order, and copy the result. It runs entirely in the
-browser and does not require a backend. The builder also shows an approximate
-token count based on four characters per token; actual counts vary by model
-tokenizer.
+The builder extracts only the `## Prompt` section from bricks that have one. Supporting material such as variable descriptions and composition suggestions remains on the brick page for reference and is not copied into the generated prompt.
 
-## Repository Architecture
+## Folder guide
 
-```
-prompts/
-├── core/
-│   ├── output-format-clean-code.md   # Brick 1: Strict markdown block rule
-│   └── architecture-guardrails.md    # Brick 2: Zero inline secrets, use Secret Manager
-├── stack/
-│   ├── java21-spring3.md             # Brick 3: Use Records, Virtual Threads, WebFlux
-│   └── gcp-cloudrun.md               # Brick 4: Port 8080, Workload Identity
-└── tasks/
-    ├── generate-controller.md         # Brick 5: Specific endpoint task
-    ├── generate-harness-step.md       # Brick 6: CI/CD step
-    └── generate-test-suite.md         # Brick 7: Unit and integration tests
-```
+| Folder | Use |
+| --- | --- |
+| `requirements/` | Shape a feature request into stories and testable criteria |
+| `architecture/` | Create API contracts, design documents, and decision records |
+| `coding/`, `tasks/` | Implement or modify software |
+| `testing/` | Generate tests and find edge cases |
+| `debugging/` | Investigate defects from evidence |
+| `code-review/` | Review changes for quality and security |
+| `documentation/` | Write or improve project documentation |
+| `deployment/` | Prepare release notes and rollback plans |
+| `persona/`, `stack/`, `format/` | Add optional working style, technology, and output constraints |
+| `rovo/` | Work with Jira and Confluence using Rovo |
 
-## Quick Deployment to GitHub Pages
+## Adding a brick
 
-1. **Initialize Git Repository**:
-
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: initial prompt brick repository"
-   git branch -M main
-   ```
-
-2. **Push to your GitHub repository**:
-
-   ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/prompt-brick-service.git
-   git push -u origin main
-   ```
-
-3. **Enable GitHub Pages**:
-   - Go to your repository **Settings** → **Pages**.
-   - Under **Build and deployment**, set Source to **GitHub Actions** (the included workflow `.github/workflows/` handles builds automatically).
-   - Your prompt generator service will be published live at `https://YOUR_USERNAME.github.io/prompt-brick-service/`!
+Add a Markdown file under the folder that best describes its purpose. Give it Jekyll front matter with `title`, `category`, `filename`, `description`, and `author`, followed by its content. Put the copy-ready instructions under a `## Prompt` heading; use `{{placeholder}}` names for required inputs and explain them in a separate `## Variables` section. Keep composition examples and usage notes outside the prompt section so they are not included in a built prompt. Existing context-only bricks without a `## Prompt` heading contribute their full content.

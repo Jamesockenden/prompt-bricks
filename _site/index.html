@@ -29,87 +29,372 @@
       </ul>
     </nav>
     <h2>Prompt Bricks Library</h2>
-<p>Browse composable, version-controlled markdown bricks for assembling LLM prompts.</p>
+<p>Build a task-specific prompt from small, focused instructions. Each brick has a page for review; only its prompt template is added to the combined prompt.</p>
 
 <section class="builder" aria-labelledby="builder-title">
   <h3 id="builder-title">Build a combined prompt</h3>
-  <p>Select the prompt bricks to include, then build and copy your combined prompt.</p>
-  <div class="brick-list">
-    
-    
-    <label class="brick-card" for="brick-1">
-      <input id="brick-1" type="checkbox" data-prompt-url="/prompts/core/output-format-clean-code.html" data-prompt-title="Output Format: Strict Clean Code">
-      <span>
-        <strong><a href="/prompts/core/output-format-clean-code.html">Output Format: Strict Clean Code</a></strong>
-        <small>core · output-format-clean-code.md</small>
-        <span>Enforces a single markdown code block, production-ready syntax, zero conversational fluff</span>
-      </span>
+  <p>Start with a task brick, then add only the requirements, codebase context, technology constraints, or output format needed for this task. Review and fill in each brick's <code>{{placeholder}}</code> values before sending the result to your coding assistant.</p>
+  
+  
+  <div class="brick-filters">
+    <label for="category-filter">Filter by category
+      <select id="category-filter">
+        <option value="">All categories</option>
+        
+        <option value="architecture">architecture</option>
+        
+        <option value="code-review">code-review</option>
+        
+        <option value="coding">coding</option>
+        
+        <option value="core">core</option>
+        
+        <option value="debugging">debugging</option>
+        
+        <option value="deployment">deployment</option>
+        
+        <option value="documentation">documentation</option>
+        
+        <option value="persona">persona</option>
+        
+        <option value="requirements">requirements</option>
+        
+        <option value="rovo / Confluence">rovo / Confluence</option>
+        
+        <option value="rovo / Jira">rovo / Jira</option>
+        
+        <option value="stack">stack</option>
+        
+        <option value="tasks">tasks</option>
+        
+        <option value="testing">testing</option>
+        
+      </select>
     </label>
-    
-    <label class="brick-card" for="brick-2">
-      <input id="brick-2" type="checkbox" data-prompt-url="/prompts/core/architecture-guardrails.html" data-prompt-title="Architecture Guardrails &amp; Security">
-      <span>
-        <strong><a href="/prompts/core/architecture-guardrails.html">Architecture Guardrails & Security</a></strong>
-        <small>core · architecture-guardrails.md</small>
-        <span>Zero inline secrets, 12-factor configuration, health probes, and structured JSON observability</span>
-      </span>
+    <label for="brick-search">Search titles and descriptions
+      <input id="brick-search" type="search" placeholder="e.g. testing, API, release">
     </label>
-    
-    <label class="brick-card" for="brick-3">
-      <input id="brick-3" type="checkbox" data-prompt-url="/prompts/persona/staff-principal-architect.html" data-prompt-title="Persona: Staff Principal Architect">
-      <span>
-        <strong><a href="/prompts/persona/staff-principal-architect.html">Persona: Staff Principal Architect</a></strong>
-        <small>persona · staff-principal-architect.md</small>
-        <span>Authoritative, defense-in-depth security mindset, enterprise resiliency, zero fluff</span>
-      </span>
-    </label>
-    
-    <label class="brick-card" for="brick-4">
-      <input id="brick-4" type="checkbox" data-prompt-url="/prompts/stack/java21-spring3.html" data-prompt-title="Stack: Java 21 &amp; Spring Boot 3.3+">
-      <span>
-        <strong><a href="/prompts/stack/java21-spring3.html">Stack: Java 21 & Spring Boot 3.3+</a></strong>
-        <small>stack · java21-spring3.md</small>
-        <span>Modern Java features: immutable records, virtual threads, pattern matching, Jakarta EE 10</span>
-      </span>
-    </label>
-    
-    <label class="brick-card" for="brick-5">
-      <input id="brick-5" type="checkbox" data-prompt-url="/prompts/stack/gcp-cloudrun.html" data-prompt-title="Runtime: GCP Cloud Run Container Contract">
-      <span>
-        <strong><a href="/prompts/stack/gcp-cloudrun.html">Runtime: GCP Cloud Run Container Contract</a></strong>
-        <small>stack · gcp-cloudrun.md</small>
-        <span>Port 8080 binding, non-root execution, Workload Identity, fast startup optimization</span>
-      </span>
-    </label>
-    
-    <label class="brick-card" for="brick-6">
-      <input id="brick-6" type="checkbox" data-prompt-url="/prompts/tasks/generate-test-suite.html" data-prompt-title="Task: Unit &amp; Integration Test Suite">
-      <span>
-        <strong><a href="/prompts/tasks/generate-test-suite.html">Task: Unit & Integration Test Suite</a></strong>
-        <small>tasks · generate-test-suite.md</small>
-        <span>Unit and integration tests with Mockito, Testcontainers, and boundary coverage</span>
-      </span>
-    </label>
-    
-    <label class="brick-card" for="brick-7">
-      <input id="brick-7" type="checkbox" data-prompt-url="/prompts/tasks/generate-harness-step.html" data-prompt-title="Task: CI/CD Pipeline &amp; Harness Step">
-      <span>
-        <strong><a href="/prompts/tasks/generate-harness-step.html">Task: CI/CD Pipeline & Harness Step</a></strong>
-        <small>tasks · generate-harness-step.md</small>
-        <span>Automated container build, Trivy vulnerability scanning, SonarQube quality gate, canary rollouts</span>
-      </span>
-    </label>
-    
-    <label class="brick-card" for="brick-8">
-      <input id="brick-8" type="checkbox" data-prompt-url="/prompts/tasks/generate-controller.html" data-prompt-title="Task: Generate RESTful API Controller">
-      <span>
-        <strong><a href="/prompts/tasks/generate-controller.html">Task: Generate RESTful API Controller</a></strong>
-        <small>tasks · generate-controller.md</small>
-        <span>OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotency, pagination</span>
-      </span>
-    </label>
-    
   </div>
+  <p id="brick-results" role="status" aria-live="polite"></p>
+  <div class="brick-list">
+
+<label class="brick-card" for="brick-1" data-prompt-category="architecture" data-prompt-search="Architecture Decision Record (ADR) Record a technical decision, context, consequences, and alternatives in a reviewable ADR.">
+  <input id="brick-1" type="checkbox" data-prompt-url="/prompts/architecture/adr-generator.html" data-prompt-title="Architecture Decision Record (ADR)">
+  <span>
+    <strong><a href="/prompts/architecture/adr-generator.html">Architecture Decision Record (ADR)</a></strong>
+    <small>architecture · adr-generator.md</small>
+    <span>Record a technical decision, context, consequences, and alternatives in a reviewable ADR.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-2" data-prompt-category="architecture" data-prompt-search="API Spec Generator Create an OpenAPI specification from a plain-language description of API behavior.">
+  <input id="brick-2" type="checkbox" data-prompt-url="/prompts/architecture/api-spec-generator.html" data-prompt-title="API Spec Generator">
+  <span>
+    <strong><a href="/prompts/architecture/api-spec-generator.html">API Spec Generator</a></strong>
+    <small>architecture · api-spec-generator.md</small>
+    <span>Create an OpenAPI specification from a plain-language description of API behavior.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-3" data-prompt-category="architecture" data-prompt-search="System Design Document Draft a structured technical design for a system or feature, ready for team review.">
+  <input id="brick-3" type="checkbox" data-prompt-url="/prompts/architecture/system-design-doc.html" data-prompt-title="System Design Document">
+  <span>
+    <strong><a href="/prompts/architecture/system-design-doc.html">System Design Document</a></strong>
+    <small>architecture · system-design-doc.md</small>
+    <span>Draft a structured technical design for a system or feature, ready for team review.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-4" data-prompt-category="code-review" data-prompt-search="Pull Request Review Review a change for correctness, design, maintainability, and actionable issues.">
+  <input id="brick-4" type="checkbox" data-prompt-url="/prompts/code-review/pr-review.html" data-prompt-title="Pull Request Review">
+  <span>
+    <strong><a href="/prompts/code-review/pr-review.html">Pull Request Review</a></strong>
+    <small>code-review · pr-review.md</small>
+    <span>Review a change for correctness, design, maintainability, and actionable issues.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-5" data-prompt-category="code-review" data-prompt-search="Security Audit Assess code or a diff for security weaknesses and actionable remediation.">
+  <input id="brick-5" type="checkbox" data-prompt-url="/prompts/code-review/security-audit.html" data-prompt-title="Security Audit">
+  <span>
+    <strong><a href="/prompts/code-review/security-audit.html">Security Audit</a></strong>
+    <small>code-review · security-audit.md</small>
+    <span>Assess code or a diff for security weaknesses and actionable remediation.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-6" data-prompt-category="coding" data-prompt-search="Implement from Spec Implement a requirement while matching the conventions and boundaries of the existing codebase.">
+  <input id="brick-6" type="checkbox" data-prompt-url="/prompts/coding/implement-from-spec.html" data-prompt-title="Implement from Spec">
+  <span>
+    <strong><a href="/prompts/coding/implement-from-spec.html">Implement from Spec</a></strong>
+    <small>coding · implement-from-spec.md</small>
+    <span>Implement a requirement while matching the conventions and boundaries of the existing codebase.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-7" data-prompt-category="coding" data-prompt-search="Refactor for Readability Improve code clarity and maintainability without changing externally observable behavior.">
+  <input id="brick-7" type="checkbox" data-prompt-url="/prompts/coding/refactor-for-readability.html" data-prompt-title="Refactor for Readability">
+  <span>
+    <strong><a href="/prompts/coding/refactor-for-readability.html">Refactor for Readability</a></strong>
+    <small>coding · refactor-for-readability.md</small>
+    <span>Improve code clarity and maintainability without changing externally observable behavior.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-8" data-prompt-category="core" data-prompt-search="Architecture Guardrails &amp; Security Zero inline secrets, 12-factor configuration, health probes, and structured JSON observability">
+  <input id="brick-8" type="checkbox" data-prompt-url="/prompts/architecture/architecture-guardrails.html" data-prompt-title="Architecture Guardrails &amp; Security">
+  <span>
+    <strong><a href="/prompts/architecture/architecture-guardrails.html">Architecture Guardrails & Security</a></strong>
+    <small>core · architecture-guardrails.md</small>
+    <span>Zero inline secrets, 12-factor configuration, health probes, and structured JSON observability</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-9" data-prompt-category="core" data-prompt-search="Output Format: Strict Clean Code Enforces a single markdown code block, production-ready syntax, zero conversational fluff">
+  <input id="brick-9" type="checkbox" data-prompt-url="/prompts/format/output-format-clean-code.html" data-prompt-title="Output Format: Strict Clean Code">
+  <span>
+    <strong><a href="/prompts/format/output-format-clean-code.html">Output Format: Strict Clean Code</a></strong>
+    <small>core · output-format-clean-code.md</small>
+    <span>Enforces a single markdown code block, production-ready syntax, zero conversational fluff</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-10" data-prompt-category="debugging" data-prompt-search="Root Cause Analysis Diagnose a defect from symptoms and evidence before proposing a targeted fix.">
+  <input id="brick-10" type="checkbox" data-prompt-url="/prompts/debugging/root-cause-analysis.html" data-prompt-title="Root Cause Analysis">
+  <span>
+    <strong><a href="/prompts/debugging/root-cause-analysis.html">Root Cause Analysis</a></strong>
+    <small>debugging · root-cause-analysis.md</small>
+    <span>Diagnose a defect from symptoms and evidence before proposing a targeted fix.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-11" data-prompt-category="deployment" data-prompt-search="Release Notes Turn verified changes into clear, audience-appropriate release notes.">
+  <input id="brick-11" type="checkbox" data-prompt-url="/prompts/deployment/release-notes.html" data-prompt-title="Release Notes">
+  <span>
+    <strong><a href="/prompts/deployment/release-notes.html">Release Notes</a></strong>
+    <small>deployment · release-notes.md</small>
+    <span>Turn verified changes into clear, audience-appropriate release notes.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-12" data-prompt-category="deployment" data-prompt-search="Rollback Plan Create a concrete rollback and mitigation plan with triggers and validation steps.">
+  <input id="brick-12" type="checkbox" data-prompt-url="/prompts/deployment/rollback-plan.html" data-prompt-title="Rollback Plan">
+  <span>
+    <strong><a href="/prompts/deployment/rollback-plan.html">Rollback Plan</a></strong>
+    <small>deployment · rollback-plan.md</small>
+    <span>Create a concrete rollback and mitigation plan with triggers and validation steps.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-13" data-prompt-category="documentation" data-prompt-search="README Generator Create a complete, accurate README from project context and intended audience.">
+  <input id="brick-13" type="checkbox" data-prompt-url="/prompts/documentation/readme-generator.html" data-prompt-title="README Generator">
+  <span>
+    <strong><a href="/prompts/documentation/readme-generator.html">README Generator</a></strong>
+    <small>documentation · readme-generator.md</small>
+    <span>Create a complete, accurate README from project context and intended audience.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-14" data-prompt-category="documentation" data-prompt-search="Inline Documentation Add useful comments and docstrings that explain intent without changing behavior.">
+  <input id="brick-14" type="checkbox" data-prompt-url="/prompts/documentation/code-comments.html" data-prompt-title="Inline Documentation">
+  <span>
+    <strong><a href="/prompts/documentation/code-comments.html">Inline Documentation</a></strong>
+    <small>documentation · code-comments.md</small>
+    <span>Add useful comments and docstrings that explain intent without changing behavior.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-15" data-prompt-category="persona" data-prompt-search="Persona: Staff Principal Architect Authoritative, defense-in-depth security mindset, enterprise resiliency, zero fluff">
+  <input id="brick-15" type="checkbox" data-prompt-url="/prompts/persona/staff-principal-architect.html" data-prompt-title="Persona: Staff Principal Architect">
+  <span>
+    <strong><a href="/prompts/persona/staff-principal-architect.html">Persona: Staff Principal Architect</a></strong>
+    <small>persona · staff-principal-architect.md</small>
+    <span>Authoritative, defense-in-depth security mindset, enterprise resiliency, zero fluff</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-16" data-prompt-category="requirements" data-prompt-search="Acceptance Criteria (Gherkin) Convert a feature request into clear, testable Given/When/Then acceptance criteria.">
+  <input id="brick-16" type="checkbox" data-prompt-url="/prompts/requirements/acceptance-criteria-gherkin.html" data-prompt-title="Acceptance Criteria (Gherkin)">
+  <span>
+    <strong><a href="/prompts/requirements/acceptance-criteria-gherkin.html">Acceptance Criteria (Gherkin)</a></strong>
+    <small>requirements · acceptance-criteria-gherkin.md</small>
+    <span>Convert a feature request into clear, testable Given/When/Then acceptance criteria.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-17" data-prompt-category="requirements" data-prompt-search="User Story Generator Turn a stakeholder request into user stories with explicit acceptance criteria.">
+  <input id="brick-17" type="checkbox" data-prompt-url="/prompts/requirements/user-story-generator.html" data-prompt-title="User Story Generator">
+  <span>
+    <strong><a href="/prompts/requirements/user-story-generator.html">User Story Generator</a></strong>
+    <small>requirements · user-story-generator.md</small>
+    <span>Turn a stakeholder request into user stories with explicit acceptance criteria.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-18" data-prompt-category="rovo / Confluence" data-prompt-search="Technical Spec Page (Rovo) Draft a review-ready Confluence technical specification from supplied context.">
+  <input id="brick-18" type="checkbox" data-prompt-url="/prompts/rovo/confluence/technical-spec-page.html" data-prompt-title="Technical Spec Page (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/confluence/technical-spec-page.html">Technical Spec Page (Rovo)</a></strong>
+    <small>rovo / Confluence · technical-spec-page.md</small>
+    <span>Draft a review-ready Confluence technical specification from supplied context.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-19" data-prompt-category="rovo / Confluence" data-prompt-search="Confluence Page Review (Rovo) Compare a draft Confluence page against a reference and identify specific gaps.">
+  <input id="brick-19" type="checkbox" data-prompt-url="/prompts/rovo/confluence/page-review-against-reference.html" data-prompt-title="Confluence Page Review (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/confluence/page-review-against-reference.html">Confluence Page Review (Rovo)</a></strong>
+    <small>rovo / Confluence · page-review-against-reference.md</small>
+    <span>Compare a draft Confluence page against a reference and identify specific gaps.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-20" data-prompt-category="rovo / Confluence" data-prompt-search="Page Summary and Action Items (Rovo) Summarize Confluence content into key points, decisions, and open action items.">
+  <input id="brick-20" type="checkbox" data-prompt-url="/prompts/rovo/confluence/page-summary-action-items.html" data-prompt-title="Page Summary and Action Items (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/confluence/page-summary-action-items.html">Page Summary and Action Items (Rovo)</a></strong>
+    <small>rovo / Confluence · page-summary-action-items.md</small>
+    <span>Summarize Confluence content into key points, decisions, and open action items.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-21" data-prompt-category="rovo / Confluence" data-prompt-search="Retrospective Summary by Theme (Rovo) Group retrospective feedback into themes, insights, and owned action items.">
+  <input id="brick-21" type="checkbox" data-prompt-url="/prompts/rovo/confluence/retro-summary-by-theme.html" data-prompt-title="Retrospective Summary by Theme (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/confluence/retro-summary-by-theme.html">Retrospective Summary by Theme (Rovo)</a></strong>
+    <small>rovo / Confluence · retro-summary-by-theme.md</small>
+    <span>Group retrospective feedback into themes, insights, and owned action items.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-22" data-prompt-category="rovo / Confluence" data-prompt-search="Confluence Release Notes (Rovo) Draft Confluence release notes from Jira work items and a specified release.">
+  <input id="brick-22" type="checkbox" data-prompt-url="/prompts/rovo/confluence/release-notes-page.html" data-prompt-title="Confluence Release Notes (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/confluence/release-notes-page.html">Confluence Release Notes (Rovo)</a></strong>
+    <small>rovo / Confluence · release-notes-page.md</small>
+    <span>Draft Confluence release notes from Jira work items and a specified release.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-23" data-prompt-category="rovo / Confluence" data-prompt-search="Meeting Notes to Confluence Page (Rovo) Transform meeting notes into a structured Confluence page with decisions and actions.">
+  <input id="brick-23" type="checkbox" data-prompt-url="/prompts/rovo/confluence/meeting-notes-to-page.html" data-prompt-title="Meeting Notes to Confluence Page (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/confluence/meeting-notes-to-page.html">Meeting Notes to Confluence Page (Rovo)</a></strong>
+    <small>rovo / Confluence · meeting-notes-to-page.md</small>
+    <span>Transform meeting notes into a structured Confluence page with decisions and actions.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-24" data-prompt-category="rovo / Jira" data-prompt-search="JQL Search Assistant (Rovo) Translate a plain-language question into a precise Jira search and JQL query.">
+  <input id="brick-24" type="checkbox" data-prompt-url="/prompts/rovo/jira/jql-search-assistant.html" data-prompt-title="JQL Search Assistant (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/jira/jql-search-assistant.html">JQL Search Assistant (Rovo)</a></strong>
+    <small>rovo / Jira · jql-search-assistant.md</small>
+    <span>Translate a plain-language question into a precise Jira search and JQL query.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-25" data-prompt-category="rovo / Jira" data-prompt-search="Bug Report Ticket (Rovo) Turn a rough defect report into a clear, actionable Jira bug ticket.">
+  <input id="brick-25" type="checkbox" data-prompt-url="/prompts/rovo/jira/bug-report-ticket.html" data-prompt-title="Bug Report Ticket (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/jira/bug-report-ticket.html">Bug Report Ticket (Rovo)</a></strong>
+    <small>rovo / Jira · bug-report-ticket.md</small>
+    <span>Turn a rough defect report into a clear, actionable Jira bug ticket.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-26" data-prompt-category="rovo / Jira" data-prompt-search="Jira Issue from Notes (Rovo) Convert unstructured discussion notes into a well-formed Jira issue draft.">
+  <input id="brick-26" type="checkbox" data-prompt-url="/prompts/rovo/jira/jira-issue-from-notes.html" data-prompt-title="Jira Issue from Notes (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/jira/jira-issue-from-notes.html">Jira Issue from Notes (Rovo)</a></strong>
+    <small>rovo / Jira · jira-issue-from-notes.md</small>
+    <span>Convert unstructured discussion notes into a well-formed Jira issue draft.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-27" data-prompt-category="rovo / Jira" data-prompt-search="Sprint Status Summary (Rovo) Summarize live sprint progress, risks, blockers, and next steps for stakeholders.">
+  <input id="brick-27" type="checkbox" data-prompt-url="/prompts/rovo/jira/sprint-status-summary.html" data-prompt-title="Sprint Status Summary (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/jira/sprint-status-summary.html">Sprint Status Summary (Rovo)</a></strong>
+    <small>rovo / Jira · sprint-status-summary.md</small>
+    <span>Summarize live sprint progress, risks, blockers, and next steps for stakeholders.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-28" data-prompt-category="rovo / Jira" data-prompt-search="Epic Breakdown (Rovo) Break an initiative into scoped, dependency-aware Jira stories and tasks.">
+  <input id="brick-28" type="checkbox" data-prompt-url="/prompts/rovo/jira/epic-breakdown.html" data-prompt-title="Epic Breakdown (Rovo)">
+  <span>
+    <strong><a href="/prompts/rovo/jira/epic-breakdown.html">Epic Breakdown (Rovo)</a></strong>
+    <small>rovo / Jira · epic-breakdown.md</small>
+    <span>Break an initiative into scoped, dependency-aware Jira stories and tasks.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-29" data-prompt-category="stack" data-prompt-search="Stack: Java 21 &amp; Spring Boot 3.3+ Modern Java features: immutable records, virtual threads, pattern matching, Jakarta EE 10">
+  <input id="brick-29" type="checkbox" data-prompt-url="/prompts/stack/java21-spring3.html" data-prompt-title="Stack: Java 21 &amp; Spring Boot 3.3+">
+  <span>
+    <strong><a href="/prompts/stack/java21-spring3.html">Stack: Java 21 & Spring Boot 3.3+</a></strong>
+    <small>stack · java21-spring3.md</small>
+    <span>Modern Java features: immutable records, virtual threads, pattern matching, Jakarta EE 10</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-30" data-prompt-category="stack" data-prompt-search="Runtime: GCP Cloud Run Container Contract Port 8080 binding, non-root execution, Workload Identity, fast startup optimization">
+  <input id="brick-30" type="checkbox" data-prompt-url="/prompts/stack/gcp-cloudrun.html" data-prompt-title="Runtime: GCP Cloud Run Container Contract">
+  <span>
+    <strong><a href="/prompts/stack/gcp-cloudrun.html">Runtime: GCP Cloud Run Container Contract</a></strong>
+    <small>stack · gcp-cloudrun.md</small>
+    <span>Port 8080 binding, non-root execution, Workload Identity, fast startup optimization</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-31" data-prompt-category="tasks" data-prompt-search="Task: CI/CD Pipeline &amp; Harness Step Automated container build, Trivy vulnerability scanning, SonarQube quality gate, canary rollouts">
+  <input id="brick-31" type="checkbox" data-prompt-url="/prompts/tasks/generate-harness-step.html" data-prompt-title="Task: CI/CD Pipeline &amp; Harness Step">
+  <span>
+    <strong><a href="/prompts/tasks/generate-harness-step.html">Task: CI/CD Pipeline & Harness Step</a></strong>
+    <small>tasks · generate-harness-step.md</small>
+    <span>Automated container build, Trivy vulnerability scanning, SonarQube quality gate, canary rollouts</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-32" data-prompt-category="tasks" data-prompt-search="Task: Unit &amp; Integration Test Suite Unit and integration tests with Mockito, Testcontainers, and boundary coverage">
+  <input id="brick-32" type="checkbox" data-prompt-url="/prompts/testing/generate-test-suite.html" data-prompt-title="Task: Unit &amp; Integration Test Suite">
+  <span>
+    <strong><a href="/prompts/testing/generate-test-suite.html">Task: Unit & Integration Test Suite</a></strong>
+    <small>tasks · generate-test-suite.md</small>
+    <span>Unit and integration tests with Mockito, Testcontainers, and boundary coverage</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-33" data-prompt-category="tasks" data-prompt-search="Task: Generate RESTful API Controller OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotency, pagination">
+  <input id="brick-33" type="checkbox" data-prompt-url="/prompts/tasks/generate-controller.html" data-prompt-title="Task: Generate RESTful API Controller">
+  <span>
+    <strong><a href="/prompts/tasks/generate-controller.html">Task: Generate RESTful API Controller</a></strong>
+    <small>tasks · generate-controller.md</small>
+    <span>OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotency, pagination</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-34" data-prompt-category="testing" data-prompt-search="Unit Test Generator Generate focused unit tests using the project&#39;s framework and established conventions.">
+  <input id="brick-34" type="checkbox" data-prompt-url="/prompts/testing/unit-test-generator.html" data-prompt-title="Unit Test Generator">
+  <span>
+    <strong><a href="/prompts/testing/unit-test-generator.html">Unit Test Generator</a></strong>
+    <small>testing · unit-test-generator.md</small>
+    <span>Generate focused unit tests using the project's framework and established conventions.</span>
+  </span>
+</label>
+
+<label class="brick-card" for="brick-35" data-prompt-category="testing" data-prompt-search="Edge Case Finder Find missing edge cases and failure scenarios in a specification or implementation.">
+  <input id="brick-35" type="checkbox" data-prompt-url="/prompts/testing/edge-case-finder.html" data-prompt-title="Edge Case Finder">
+  <span>
+    <strong><a href="/prompts/testing/edge-case-finder.html">Edge Case Finder</a></strong>
+    <small>testing · edge-case-finder.md</small>
+    <span>Find missing edge cases and failure scenarios in a specification or implementation.</span>
+  </span>
+</label>
+
+  </div>
+  <p id="no-bricks-found" hidden>No prompt bricks match these filters.</p>
   <div class="builder-actions">
     <button id="build-prompt" type="button">Build combined prompt</button>
     <button id="copy-prompt" type="button" class="secondary" disabled>Copy prompt</button>
@@ -132,6 +417,27 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .brick-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+    margin-block: 1rem;
+  }
+
+  .brick-filters label {
+    margin-bottom: 0;
+  }
+
+  #brick-results {
+    margin-block: 0.5rem 1rem;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  .brick-card[hidden] {
+    display: none;
   }
 
   .brick-card {

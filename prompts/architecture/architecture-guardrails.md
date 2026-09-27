@@ -7,7 +7,7 @@ description: "Zero inline secrets, 12-factor configuration, health probes, and s
 tags: ["security","guardrails","cloud-native","observability"]
 commitHash: "8b1d44e"
 lastModified: "2026-09-20"
-author: "infosec-platform"
+author: "AI Generated"
 params: [{"id":"secret_manager_provider","name":"secret_manager_provider","label":"Secret Management System","type":"select","defaultValue":"GCP Secret Manager","options":["GCP Secret Manager","HashiCorp Vault","AWS Secrets Manager","Kubernetes Secrets"],"description":"Backend for secret resolution"},{"id":"liveness_probe_path","name":"liveness_probe_path","label":"Liveness Probe Path","type":"string","defaultValue":"/livez","description":"HTTP probe for application liveness"},{"id":"readiness_probe_path","name":"readiness_probe_path","label":"Readiness Probe Path","type":"string","defaultValue":"/readyz","description":"HTTP probe for dependency readiness"}]
 ---
 

@@ -5,10 +5,44 @@
   const output = document.getElementById("combined-prompt");
   const status = document.getElementById("builder-status");
   const tokenCount = document.getElementById("token-count");
+  const categoryFilter = document.getElementById("category-filter");
+  const brickSearch = document.getElementById("brick-search");
+  const brickResults = document.getElementById("brick-results");
+  const noBricksFound = document.getElementById("no-bricks-found");
 
   if (!buildButton || !copyButton || !output || !status || !tokenCount) {
     return;
   }
+
+  function filterBricks() {
+    if (!categoryFilter || !brickSearch || !brickResults || !noBricksFound) {
+      return;
+    }
+
+    const category = categoryFilter.value.trim().toLowerCase();
+    const searchTerms = brickSearch.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    let visibleCount = 0;
+
+    checkboxes.forEach((checkbox) => {
+      const card = checkbox.closest(".brick-card");
+      if (!card) {
+        return;
+      }
+
+      const matchesCategory = !category || card.dataset.promptCategory.toLowerCase() === category;
+      const searchableText = card.dataset.promptSearch.toLowerCase();
+      const matchesSearch = searchTerms.every((term) => searchableText.includes(term));
+      card.hidden = !matchesCategory || !matchesSearch;
+      visibleCount += card.hidden ? 0 : 1;
+    });
+
+    brickResults.textContent = `Showing ${visibleCount} of ${checkboxes.length} prompt bricks.`;
+    noBricksFound.hidden = visibleCount !== 0;
+  }
+
+  categoryFilter?.addEventListener("change", filterBricks);
+  brickSearch?.addEventListener("input", filterBricks);
+  filterBricks();
 
   function estimateTokenCount(text) {
     return Math.ceil([...text].length / 4);
@@ -100,10 +134,19 @@
         if (!prompt) {
           throw new Error(`Prompt content was missing for "${checkbox.dataset.promptTitle}".`);
         }
-        const heading = prompt.querySelector("h3");
-        if (heading?.textContent.trim() === "Prompt Template") {
-          heading.remove();
+
+        const promptHeading = Array.from(prompt.querySelectorAll("h2"))
+          .find((heading) => heading.textContent.trim().toLowerCase() === "prompt");
+        if (promptHeading) {
+          const sections = [];
+          let section = promptHeading.nextElementSibling;
+          while (section && !/^H[1-2]$/.test(section.tagName)) {
+            sections.push(section.tagName === "PRE" ? `${section.textContent.trim()}\n\n` : renderMarkdown(section));
+            section = section.nextElementSibling;
+          }
+          return sections.join("");
         }
+
         return renderMarkdown(prompt);
       }));
 

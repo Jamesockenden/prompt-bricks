@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sprint Status Summary (Rovo) | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">All Bricks</a></li>
+        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Sprint Status Summary (Rovo)</h1>
+    <div class="brick-meta">
+      <span>Category: <strong>rovo / Jira</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/rovo/jira/sprint-status-summary.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Summarize live sprint progress, risks, blockers, and next steps for stakeholders.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h1 id="brick-sprint-status-summary-rovo">Brick: Sprint Status Summary (Rovo)</h1>
+
+<p><strong>Category:</strong> rovo/jira
+<strong>Purpose:</strong> Get a stakeholder-ready summary of sprint or project progress directly from live Jira data, via Rovo Chat.</p>
+
+<h2 id="prompt">Prompt</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Summarise the current status of {{scope}} for {{audience}}.
+
+Include:
+- Overall status in one line (on track / at risk / blocked), with why
+- What was completed since {{since}}
+- What's in progress, with any items at risk of missing the sprint/
+  deadline and why
+- Blockers, with who/what is needed to unblock each one
+- What's planned next
+
+Keep it to something that fits on one screen — this is a status update,
+not a full report. Use plain language if the audience isn't engineers.
+</code></pre></div></div>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{{scope}}</code>: e.g. “the current sprint in {{project_key}}”, “epic {{epic_key}}”, “work items assigned to {{team}}”</li>
+  <li><code class="language-plaintext highlighter-rouge">{{audience}}</code>: e.g. “engineering leadership”, “the product team”, “a customer-facing exec summary”</li>
+  <li><code class="language-plaintext highlighter-rouge">{{since}}</code>: e.g. “last standup”, “Monday”, “the last sprint review”</li>
+</ul>
+
+<h2 id="rovo-tips">Rovo tips</h2>
+
+<ul>
+  <li>This works best asked directly in Rovo Chat with live Jira access — no need to paste data, Rovo pulls it from the project/sprint you reference.</li>
+  <li>Good follow-ups: <em>“Now turn that into a Confluence status page.”</em> or <em>“Draft a Slack message version of that, shorter.”</em></li>
+</ul>
+
+<h2 id="example-composition">Example composition</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ Brick: Sprint Status Summary (Rovo) ] + [ Brick: Meeting Notes to Confluence Page (Rovo) ]
+</code></pre></div></div>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

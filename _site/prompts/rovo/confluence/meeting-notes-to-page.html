@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Notes to Confluence Page (Rovo) | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">All Bricks</a></li>
+        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Meeting Notes to Confluence Page (Rovo)</h1>
+    <div class="brick-meta">
+      <span>Category: <strong>rovo / Confluence</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/rovo/confluence/meeting-notes-to-page.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Transform meeting notes into a structured Confluence page with decisions and actions.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h1 id="brick-meeting-notes-to-confluence-page-rovo">Brick: Meeting Notes to Confluence Page (Rovo)</h1>
+
+<p><strong>Category:</strong> rovo/confluence
+<strong>Purpose:</strong> Turn raw, messy meeting notes into a structured, shareable Confluence page.</p>
+
+<h2 id="prompt">Prompt</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Turn the notes below into a Confluence page for {{audience}}.
+
+Structure:
+- Title: short and specific (not just "Meeting Notes")
+- TL;DR (2-3 sentences)
+- Attendees / stakeholders (if mentioned)
+- Key discussion points, grouped by theme (not chronological transcript)
+- Decisions made
+- Action items — as a table with Owner and Due date columns; leave
+  blank cells where the notes don't specify one rather than guessing
+- Open questions
+
+Keep the tone {{tone}}. Don't editorialize or add opinions that weren't
+expressed in the notes.
+
+Notes:
+"""
+{{raw_notes}}
+"""
+</code></pre></div></div>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{{audience}}</code>: who this page is for (team, leadership, cross-functional partners)</li>
+  <li><code class="language-plaintext highlighter-rouge">{{tone}}</code>: e.g. “concise and professional”, “casual team update”</li>
+  <li><code class="language-plaintext highlighter-rouge">{{raw_notes}}</code>: the raw notes, transcript, or bullet dump</li>
+</ul>
+
+<h2 id="rovo-tips">Rovo tips</h2>
+
+<ul>
+  <li>If the notes are already on a Confluence page, skip pasting them: <em>“Using the notes on this page, create a clean summary page in {{space}}.”</em></li>
+  <li>Good follow-up: <em>“Now create this as a new page in the {{space}} space, under {{parent_page}}.”</em></li>
+</ul>
+
+<h2 id="example-composition">Example composition</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ Brick: Meeting Notes to Confluence Page (Rovo) ] + [ Brick: Jira Issue From Notes (Rovo) ]
+</code></pre></div></div>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

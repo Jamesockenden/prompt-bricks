@@ -3,24 +3,40 @@ layout: default
 title: "Prompt Brick Catalog"
 ---
 <h2>Prompt Bricks Library</h2>
-<p>Browse composable, version-controlled markdown bricks for assembling LLM prompts.</p>
+<p>Build a task-specific prompt from small, focused instructions. Each brick has a page for review; only its prompt template is added to the combined prompt.</p>
 
 <section class="builder" aria-labelledby="builder-title">
   <h3 id="builder-title">Build a combined prompt</h3>
-  <p>Select the prompt bricks to include, then build and copy your combined prompt.</p>
-  <div class="brick-list">
-    {% assign prompt_pages = site.pages | where_exp: "page", "page.category" | sort: "category" %}
-    {% for prompt in prompt_pages %}
-    <label class="brick-card" for="brick-{{ forloop.index }}">
-      <input id="brick-{{ forloop.index }}" type="checkbox" data-prompt-url="{{ prompt.url | relative_url }}" data-prompt-title="{{ prompt.title | escape }}">
-      <span>
-        <strong><a href="{{ prompt.url | relative_url }}">{{ prompt.title }}</a></strong>
-        <small>{{ prompt.category }} · {{ prompt.filename }}</small>
-        <span>{{ prompt.description }}</span>
-      </span>
+  <p>Start with a task brick, then add only the requirements, codebase context, technology constraints, or output format needed for this task. Review and fill in each brick's <code>{% raw %}{{placeholder}}{% endraw %}</code> values before sending the result to your coding assistant.</p>
+  {% assign prompt_pages = site.pages | where_exp: "page", "page.category" | sort: "category" %}
+  {% assign prompt_categories = prompt_pages | map: "category" | uniq | sort %}
+  <div class="brick-filters">
+    <label for="category-filter">Filter by category
+      <select id="category-filter">
+        <option value="">All categories</option>
+        {% for category in prompt_categories %}
+        <option value="{{ category | escape }}">{{ category }}</option>
+        {% endfor %}
+      </select>
     </label>
-    {% endfor %}
+    <label for="brick-search">Search titles and descriptions
+      <input id="brick-search" type="search" placeholder="e.g. testing, API, release">
+    </label>
   </div>
+  <p id="brick-results" role="status" aria-live="polite"></p>
+  <div class="brick-list">
+{% for prompt in prompt_pages %}
+<label class="brick-card" for="brick-{{ forloop.index }}" data-prompt-category="{{ prompt.category | escape }}" data-prompt-search="{{ prompt.title | escape }} {{ prompt.description | escape }}">
+  <input id="brick-{{ forloop.index }}" type="checkbox" data-prompt-url="{{ prompt.url | relative_url }}" data-prompt-title="{{ prompt.title | escape }}">
+  <span>
+    <strong><a href="{{ prompt.url | relative_url }}">{{ prompt.title }}</a></strong>
+    <small>{{ prompt.category }} · {{ prompt.filename }}</small>
+    <span>{{ prompt.description }}</span>
+  </span>
+</label>
+{% endfor %}
+  </div>
+  <p id="no-bricks-found" hidden>No prompt bricks match these filters.</p>
   <div class="builder-actions">
     <button id="build-prompt" type="button">Build combined prompt</button>
     <button id="copy-prompt" type="button" class="secondary" disabled>Copy prompt</button>
@@ -43,6 +59,27 @@ title: "Prompt Brick Catalog"
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .brick-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+    margin-block: 1rem;
+  }
+
+  .brick-filters label {
+    margin-bottom: 0;
+  }
+
+  #brick-results {
+    margin-block: 0.5rem 1rem;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  .brick-card[hidden] {
+    display: none;
   }
 
   .brick-card {

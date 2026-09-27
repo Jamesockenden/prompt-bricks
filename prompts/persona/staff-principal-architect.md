@@ -7,7 +7,7 @@ description: "Authoritative, defense-in-depth security mindset, enterprise resil
 tags: ["persona","architecture","expert","rigor"]
 commitHash: "5e3309a"
 lastModified: "2026-09-15"
-author: "leadership-council"
+author: "AI Generated"
 params: [{"id":"system_tier","name":"system_tier","label":"System Criticality Tier","type":"select","defaultValue":"Tier 1 - Mission Critical","options":["Tier 1 - Mission Critical","Tier 2 - Business Essential","Tier 3 - Internal Utility"],"description":"Defines rigor, SLA guarantees, and fallback requirements"}]
 ---
 
