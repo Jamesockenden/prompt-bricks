@@ -1,0 +1,86 @@
+[
+  {
+    "id": "var-init-01",
+    "name": "Base Java 21 Cloud Run Endpoint",
+    "version": "v1.0.0",
+    "commitMessage": "feat: initial production controller prompt for GCP Cloud Run",
+    "timestamp": 1790254806666,
+    "author": "iamjamesockenden@gmail.com",
+    "stackedBricks": [
+      {
+        "instanceId": "init-1",
+        "brickId": "core/output-format-clean-code",
+        "enabled": true
+      },
+      {
+        "instanceId": "init-2",
+        "brickId": "core/architecture-guardrails",
+        "enabled": true
+      },
+      {
+        "instanceId": "init-3",
+        "brickId": "stack/java21-spring3",
+        "enabled": true
+      },
+      {
+        "instanceId": "init-4",
+        "brickId": "stack/gcp-cloudrun",
+        "enabled": true
+      },
+      {
+        "instanceId": "init-5",
+        "brickId": "tasks/generate-controller",
+        "enabled": true
+      }
+    ],
+    "paramValues": {
+      "target_language": "java",
+      "resource_name": "CustomerAccount",
+      "endpoint_base_path": "/api/v1/accounts",
+      "spring_boot_version": "3.3.4",
+      "use_virtual_threads": true,
+      "port_binding": 8080,
+      "memory_limit": "1Gi",
+      "secret_manager_provider": "GCP Secret Manager"
+    },
+    "compiledSnapshot": "## Output Format & Code Delivery Rules\n\n1. Provide the complete implementation inside a single fenced code block (```java ... ```).\n2. The first line inside the code block MUST specify the exact relative file path as a language comment (e.g., `// src/main/.../Target.java`).\n3. Do NOT omit implementation details using comments like \"// TODO: implement\". Write complete, compiling, and syntactically valid code.\n4. Output ZERO introductory fluff, ZERO conversational preambles, and ZERO concluding pleasantries. Return only the instructions and the code payload.\n\n---\n\n## Cloud Architecture Guardrails\n\n- **Zero Inline Secrets**: Strictly prohibit hardcoded credentials. All secrets must be loaded dynamically at runtime via GCP Secret Manager.\n- **Graceful Shutdown**: Implement SIGTERM interceptors allowing 25 seconds to drain cleanly.\n- **Health Verification Probes**: Expose /livez and /readyz probes.\n- **Structured Observability**: All logs must emit single-line JSON adhering to OpenTelemetry semantic conventions."
+  },
+  {
+    "id": "var-init-02",
+    "name": "CI/CD Pipeline with Trivy Scan",
+    "version": "v1.1.0",
+    "commitMessage": "feat(cicd): add automated Trivy vulnerability gate and canary steps",
+    "timestamp": 1790427606666,
+    "author": "iamjamesockenden@gmail.com",
+    "stackedBricks": [
+      {
+        "instanceId": "init-10",
+        "brickId": "persona/staff-principal-architect",
+        "enabled": true
+      },
+      {
+        "instanceId": "init-11",
+        "brickId": "core/output-format-clean-code",
+        "enabled": true
+      },
+      {
+        "instanceId": "init-12",
+        "brickId": "stack/gcp-cloudrun",
+        "enabled": true
+      },
+      {
+        "instanceId": "init-13",
+        "brickId": "tasks/generate-harness-step",
+        "enabled": true
+      }
+    ],
+    "paramValues": {
+      "target_language": "yaml",
+      "pipeline_system": "Harness CI/CD",
+      "trivy_severity_threshold": "HIGH,CRITICAL",
+      "canary_traffic_split": 10,
+      "system_tier": "Tier 1 - Mission Critical"
+    },
+    "compiledSnapshot": "## Architectural Stance & Persona\n\nYou are acting as a Staff Principal Cloud Architect. This application is designated as **Tier 1 - Mission Critical**.\n\n---\n\n## Output Format & Code Delivery Rules\n\n1. Provide the complete implementation inside a single fenced code block (```yaml ... ```)."
+  }
+]

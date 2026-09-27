@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task: CI/CD Pipeline & Harness Step | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">All Bricks</a></li>
+        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Task: CI/CD Pipeline & Harness Step</h1>
+    <div class="brick-meta">
+      <span>Category: <strong>tasks</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/tasks/generate-harness-step.md</code></span>
+      <span>·</span>
+      <span>Author: devops-enablement</span>
+    </div>
+    <p>Automated container build, Trivy vulnerability scanning, SonarQube quality gate, canary rollouts</p>
+  </header>
+
+  
+  <section>
+    <h3>Configurable Parameters</h3>
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td><code>pipeline_system</code></td>
+          <td>select</td>
+          <td><code>Harness CI/CD</code></td>
+          <td>Target continuous deployment syntax</td>
+        </tr>
+        
+        <tr>
+          <td><code>trivy_severity_threshold</code></td>
+          <td>select</td>
+          <td><code>HIGH,CRITICAL</code></td>
+          <td>Vulnerability level that fails the build step</td>
+        </tr>
+        
+        <tr>
+          <td><code>canary_traffic_split</code></td>
+          <td>number</td>
+          <td><code>10</code></td>
+          <td>Percentage of live traffic routed to the canary candidate</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </section>
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h2 id="task-define-pipeline_system-deployment-pipeline-step">Task: Define {{pipeline_system}} Deployment Pipeline Step</h2>
+
+<p>Generate a declarative configuration for the {{pipeline_system}} pipeline executing the following phases:</p>
+
+<ol>
+  <li><strong>Hermetic Container Build</strong>:
+    <ul>
+      <li>Build multi-stage container leveraging buildkit cache mounts for dependencies.</li>
+      <li>Tag image with Git commit SHA and semantic version.</li>
+    </ul>
+  </li>
+  <li><strong>Shift-Left Security Gate</strong>:
+    <ul>
+      <li>Run Trivy vulnerability scan against generated image. Fail immediately if vulnerabilities matching <code class="language-plaintext highlighter-rouge">{{trivy_severity_threshold}}</code> are detected.</li>
+      <li>Execute static application security testing (SAST) and SonarQube quality gate (require zero blocker issues).</li>
+    </ul>
+  </li>
+  <li><strong>Canary Deployment Rollout</strong>:
+    <ul>
+      <li>Deploy candidate revision to the staging and production targets.</li>
+      <li>Route initial <code class="language-plaintext highlighter-rouge">{{canary_traffic_split}}%</code> live traffic to the canary revision.</li>
+      <li>Run automated synthetic health checks for 5 minutes (error rate &lt; 0.1%, p99 latency &lt; 200ms) before stepping up to 100% traffic.</li>
+    </ul>
+  </li>
+</ol>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

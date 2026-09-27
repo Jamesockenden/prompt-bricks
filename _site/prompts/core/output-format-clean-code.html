@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Output Format: Strict Clean Code | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">All Bricks</a></li>
+        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Output Format: Strict Clean Code</h1>
+    <div class="brick-meta">
+      <span>Category: <strong>core</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/core/output-format-clean-code.md</code></span>
+      <span>·</span>
+      <span>Author: architecture-guild</span>
+    </div>
+    <p>Enforces a single markdown code block, production-ready syntax, zero conversational fluff</p>
+  </header>
+
+  
+  <section>
+    <h3>Configurable Parameters</h3>
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td><code>target_language</code></td>
+          <td>string</td>
+          <td><code>java</code></td>
+          <td>Language tag to apply to the main fenced block</td>
+        </tr>
+        
+        <tr>
+          <td><code>enforce_single_block</code></td>
+          <td>boolean</td>
+          <td><code>true</code></td>
+          <td>Disallow splitting into multiple intermediate blocks</td>
+        </tr>
+        
+        <tr>
+          <td><code>include_file_path_header</code></td>
+          <td>boolean</td>
+          <td><code>true</code></td>
+          <td>Prepend relative target file location at line 1</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </section>
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h2 id="output-format--code-delivery-rules">Output Format &amp; Code Delivery Rules</h2>
+
+<ol>
+  <li>Provide the complete implementation inside a single fenced code block (<code class="language-plaintext highlighter-rouge">{{target_language}} ...</code>).</li>
+  <li>{{#if include_file_path_header}}The first line inside the code block MUST specify the exact relative file path as a language comment (e.g., <code class="language-plaintext highlighter-rouge">// src/main/.../Target.java</code>).{{/if}}</li>
+  <li>Do NOT omit implementation details using comments like “// TODO: implement”, “// add rest here”, or ellipsis (…). Write complete, compiling, and syntactically valid code.</li>
+  <li>Output ZERO introductory fluff (“Here is your code:”), ZERO conversational preambles, and ZERO concluding pleasantries. Return only the instructions and the code payload.</li>
+  <li>All public classes, interfaces, and methods must have standard documentation comments describing purpose and parameters.</li>
+</ol>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

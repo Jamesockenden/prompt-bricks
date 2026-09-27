@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Brick Catalog | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">All Bricks</a></li>
+        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <h2>Prompt Bricks Library</h2>
+<p>Browse composable, version-controlled markdown bricks for assembling LLM prompts.</p>
+
+<section class="builder" aria-labelledby="builder-title">
+  <h3 id="builder-title">Build a combined prompt</h3>
+  <p>Select the prompt bricks to include, then build and copy your combined prompt.</p>
+  <div class="brick-list">
+    
+    
+    <label class="brick-card" for="brick-1">
+      <input id="brick-1" type="checkbox" data-prompt-url="/prompts/core/output-format-clean-code.html" data-prompt-title="Output Format: Strict Clean Code">
+      <span>
+        <strong><a href="/prompts/core/output-format-clean-code.html">Output Format: Strict Clean Code</a></strong>
+        <small>core · output-format-clean-code.md</small>
+        <span>Enforces a single markdown code block, production-ready syntax, zero conversational fluff</span>
+      </span>
+    </label>
+    
+    <label class="brick-card" for="brick-2">
+      <input id="brick-2" type="checkbox" data-prompt-url="/prompts/core/architecture-guardrails.html" data-prompt-title="Architecture Guardrails &amp; Security">
+      <span>
+        <strong><a href="/prompts/core/architecture-guardrails.html">Architecture Guardrails & Security</a></strong>
+        <small>core · architecture-guardrails.md</small>
+        <span>Zero inline secrets, 12-factor configuration, health probes, and structured JSON observability</span>
+      </span>
+    </label>
+    
+    <label class="brick-card" for="brick-3">
+      <input id="brick-3" type="checkbox" data-prompt-url="/prompts/persona/staff-principal-architect.html" data-prompt-title="Persona: Staff Principal Architect">
+      <span>
+        <strong><a href="/prompts/persona/staff-principal-architect.html">Persona: Staff Principal Architect</a></strong>
+        <small>persona · staff-principal-architect.md</small>
+        <span>Authoritative, defense-in-depth security mindset, enterprise resiliency, zero fluff</span>
+      </span>
+    </label>
+    
+    <label class="brick-card" for="brick-4">
+      <input id="brick-4" type="checkbox" data-prompt-url="/prompts/stack/java21-spring3.html" data-prompt-title="Stack: Java 21 &amp; Spring Boot 3.3+">
+      <span>
+        <strong><a href="/prompts/stack/java21-spring3.html">Stack: Java 21 & Spring Boot 3.3+</a></strong>
+        <small>stack · java21-spring3.md</small>
+        <span>Modern Java features: immutable records, virtual threads, pattern matching, Jakarta EE 10</span>
+      </span>
+    </label>
+    
+    <label class="brick-card" for="brick-5">
+      <input id="brick-5" type="checkbox" data-prompt-url="/prompts/stack/gcp-cloudrun.html" data-prompt-title="Runtime: GCP Cloud Run Container Contract">
+      <span>
+        <strong><a href="/prompts/stack/gcp-cloudrun.html">Runtime: GCP Cloud Run Container Contract</a></strong>
+        <small>stack · gcp-cloudrun.md</small>
+        <span>Port 8080 binding, non-root execution, Workload Identity, fast startup optimization</span>
+      </span>
+    </label>
+    
+    <label class="brick-card" for="brick-6">
+      <input id="brick-6" type="checkbox" data-prompt-url="/prompts/tasks/generate-test-suite.html" data-prompt-title="Task: Unit &amp; Integration Test Suite">
+      <span>
+        <strong><a href="/prompts/tasks/generate-test-suite.html">Task: Unit & Integration Test Suite</a></strong>
+        <small>tasks · generate-test-suite.md</small>
+        <span>Unit and integration tests with Mockito, Testcontainers, and boundary coverage</span>
+      </span>
+    </label>
+    
+    <label class="brick-card" for="brick-7">
+      <input id="brick-7" type="checkbox" data-prompt-url="/prompts/tasks/generate-harness-step.html" data-prompt-title="Task: CI/CD Pipeline &amp; Harness Step">
+      <span>
+        <strong><a href="/prompts/tasks/generate-harness-step.html">Task: CI/CD Pipeline & Harness Step</a></strong>
+        <small>tasks · generate-harness-step.md</small>
+        <span>Automated container build, Trivy vulnerability scanning, SonarQube quality gate, canary rollouts</span>
+      </span>
+    </label>
+    
+    <label class="brick-card" for="brick-8">
+      <input id="brick-8" type="checkbox" data-prompt-url="/prompts/tasks/generate-controller.html" data-prompt-title="Task: Generate RESTful API Controller">
+      <span>
+        <strong><a href="/prompts/tasks/generate-controller.html">Task: Generate RESTful API Controller</a></strong>
+        <small>tasks · generate-controller.md</small>
+        <span>OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotency, pagination</span>
+      </span>
+    </label>
+    
+  </div>
+  <div class="builder-actions">
+    <button id="build-prompt" type="button">Build combined prompt</button>
+    <button id="copy-prompt" type="button" class="secondary" disabled>Copy prompt</button>
+    <span id="builder-status" role="status" aria-live="polite"></span>
+  </div>
+  <p id="token-count" aria-live="polite">Estimated token count: 0 <small>(approx. 4 characters per token; varies by model)</small></p>
+  <label for="combined-prompt">Combined prompt</label>
+  <textarea id="combined-prompt" rows="18" readonly placeholder="Your combined prompt will appear here."></textarea>
+</section>
+
+<style>
+  .builder {
+    margin-block: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+  }
+
+  .brick-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .brick-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .brick-card input {
+    margin-top: 0.35rem;
+  }
+
+  .brick-card span span,
+  .brick-card small {
+    display: block;
+    color: #64748b;
+  }
+
+  .brick-card strong {
+    display: block;
+  }
+
+  .builder-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .builder-actions button {
+    width: auto;
+    margin-bottom: 0;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  #builder-status {
+    color: #b91c1c;
+    font-size: 0.85rem;
+  }
+
+  #token-count {
+    margin-block: 1rem;
+    font-size: 0.9rem;
+  }
+
+  #token-count small {
+    color: #64748b;
+    font-size: 0.8rem;
+  }
+
+  #combined-prompt {
+    font-family: ui-monospace, monospace;
+    font-size: 0.85rem;
+  }
+
+</style>
+
+<script src="/assets/js/prompt-builder.js" defer></script>
+  </main>
+</body>
+</html>

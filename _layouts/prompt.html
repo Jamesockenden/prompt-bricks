@@ -1,0 +1,42 @@
+---
+layout: default
+---
+<article>
+  <header>
+    <h1>{{ page.title }}</h1>
+    <div class="brick-meta">
+      <span>Category: <strong>{{ page.category }}</strong></span>
+      <span>·</span>
+      <span>Path: <code>{{ page.path }}</code></span>
+      <span>·</span>
+      <span>Author: {{ page.author }}</span>
+    </div>
+    <p>{{ page.description }}</p>
+  </header>
+
+  {% if page.params %}
+  <section>
+    <h3>Configurable Parameters</h3>
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        {% for p in page.params %}
+        <tr>
+          <td><code>{{ p.name }}</code></td>
+          <td>{{ p.type }}</td>
+          <td><code>{{ p.defaultValue }}</code></td>
+          <td>{{ p.description }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  {% endif %}
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    {{ content }}
+  </section>
+</article>

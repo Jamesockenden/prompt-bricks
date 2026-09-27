@@ -1,0 +1,24 @@
+# PromptBrick Static Site Configuration for Jekyll
+title: "prompt-brick-service - Modular Prompt Repository"
+description: "Composable Lego-style prompt brick library deployed via GitHub Pages"
+baseurl: "" # the subpath of your site, e.g. /prompt-repo
+url: "https://pages.github.io" # the base hostname & protocol
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+defaults:
+  - scope:
+      path: "prompts"
+    values:
+      layout: "prompt"
+      render_with_liquid: false
+
+exclude:
+  - .github/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/

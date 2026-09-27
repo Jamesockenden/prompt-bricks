@@ -1,6 +1,0 @@
-{
-  "name": "PromptBrick Studio",
-  "description": "Modular prompt engineering workbench using Lego-style markdown bricks, git repository versioning, and static site export for GitHub Pages, Jekyll, and Hugo.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

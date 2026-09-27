@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture Guardrails & Security | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">All Bricks</a></li>
+        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Architecture Guardrails & Security</h1>
+    <div class="brick-meta">
+      <span>Category: <strong>core</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/core/architecture-guardrails.md</code></span>
+      <span>·</span>
+      <span>Author: infosec-platform</span>
+    </div>
+    <p>Zero inline secrets, 12-factor configuration, health probes, and structured JSON observability</p>
+  </header>
+
+  
+  <section>
+    <h3>Configurable Parameters</h3>
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td><code>secret_manager_provider</code></td>
+          <td>select</td>
+          <td><code>GCP Secret Manager</code></td>
+          <td>Backend for secret resolution</td>
+        </tr>
+        
+        <tr>
+          <td><code>liveness_probe_path</code></td>
+          <td>string</td>
+          <td><code>/livez</code></td>
+          <td>HTTP probe for application liveness</td>
+        </tr>
+        
+        <tr>
+          <td><code>readiness_probe_path</code></td>
+          <td>string</td>
+          <td><code>/readyz</code></td>
+          <td>HTTP probe for dependency readiness</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </section>
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h2 id="cloud-architecture-guardrails">Cloud Architecture Guardrails</h2>
+
+<ul>
+  <li><strong>Zero Inline Secrets</strong>: Strictly prohibit hardcoded credentials, API keys, database connection strings, or private tokens. All secrets must be loaded dynamically at runtime via {{secret_manager_provider}} and mapped via environment variables or workload identity bindings.</li>
+  <li><strong>Graceful Shutdown</strong>: Implement SIGTERM and SIGINT interceptors allowing in-flight requests a minimum of 25 seconds to drain cleanly before terminating.</li>
+  <li><strong>Health Verification Probes</strong>:
+    <ul>
+      <li>Expose <code class="language-plaintext highlighter-rouge">{{liveness_probe_path}}</code> for superficial process vitality.</li>
+      <li>Expose <code class="language-plaintext highlighter-rouge">{{readiness_probe_path}}</code> verifying downstream datastore, cache, and message broker connectivity.</li>
+    </ul>
+  </li>
+  <li><strong>Structured Observability</strong>: All logs must emit single-line JSON adhering to OpenTelemetry semantic conventions, including <code class="language-plaintext highlighter-rouge">trace_id</code>, <code class="language-plaintext highlighter-rouge">span_id</code>, <code class="language-plaintext highlighter-rouge">severity</code>, <code class="language-plaintext highlighter-rouge">service.name</code>, and ISO-8601 timestamps. Never print raw stack traces directly to stdout.</li>
+</ul>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

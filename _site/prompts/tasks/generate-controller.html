@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task: Generate RESTful API Controller | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">All Bricks</a></li>
+        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Task: Generate RESTful API Controller</h1>
+    <div class="brick-meta">
+      <span>Category: <strong>tasks</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/tasks/generate-controller.md</code></span>
+      <span>·</span>
+      <span>Author: api-architecture</span>
+    </div>
+    <p>OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotency, pagination</p>
+  </header>
+
+  
+  <section>
+    <h3>Configurable Parameters</h3>
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td><code>resource_name</code></td>
+          <td>string</td>
+          <td><code>Order</code></td>
+          <td>Primary domain resource managed by this endpoint</td>
+        </tr>
+        
+        <tr>
+          <td><code>endpoint_base_path</code></td>
+          <td>string</td>
+          <td><code>/api/v1/orders</code></td>
+          <td>URI prefix for the controller route</td>
+        </tr>
+        
+        <tr>
+          <td><code>enable_idempotency</code></td>
+          <td>boolean</td>
+          <td><code>true</code></td>
+          <td>Prevent double-billing or duplicate entity creation</td>
+        </tr>
+        
+        <tr>
+          <td><code>enable_cursor_pagination</code></td>
+          <td>boolean</td>
+          <td><code>true</code></td>
+          <td>Provide after_cursor and limit parameters for collection queries</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </section>
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h2 id="task-implement-production-rest-controller-for-resource_name">Task: Implement Production REST Controller for {{resource_name}}</h2>
+
+<p>Implement the complete RESTful HTTP controller for <code class="language-plaintext highlighter-rouge">{{resource_name}}</code> mounted at <code class="language-plaintext highlighter-rouge">{{endpoint_base_path}}</code>:</p>
+
+<ol>
+  <li><strong>Standardized Endpoints</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">POST {{endpoint_base_path}}</code>: Create new {{resource_name}}. Returns 201 Created with <code class="language-plaintext highlighter-rouge">Location</code> header.</li>
+      <li><code class="language-plaintext highlighter-rouge">GET {{endpoint_base_path}}/{id}</code>: Fetch {{resource_name}} by UUID. Returns 200 OK or 404 Not Found.</li>
+      <li><code class="language-plaintext highlighter-rouge">GET {{endpoint_base_path}}</code>: Query collection {{#if enable_cursor_pagination}}with cursor-based pagination (<code class="language-plaintext highlighter-rouge">limit</code>, <code class="language-plaintext highlighter-rouge">cursor</code>, <code class="language-plaintext highlighter-rouge">next_cursor</code>){{/if}}.</li>
+      <li><code class="language-plaintext highlighter-rouge">PUT {{endpoint_base_path}}/{id}</code>: Complete replace / update with optimistic lock check.</li>
+      <li><code class="language-plaintext highlighter-rouge">DELETE {{endpoint_base_path}}/{id}</code>: Idempotent soft deletion returning 204 No Content.</li>
+    </ul>
+  </li>
+  <li><strong>Enterprise Contract &amp; Error Handling</strong>:
+    <ul>
+      <li>Annotate all endpoints with Swagger/OpenAPI 3 annotations (<code class="language-plaintext highlighter-rouge">@Operation</code>, <code class="language-plaintext highlighter-rouge">@ApiResponse</code>, <code class="language-plaintext highlighter-rouge">@Tag</code>).</li>
+      <li>Format all HTTP 4xx and 5xx errors conforming strictly to RFC 7807 (Problem Details for HTTP APIs).
+{{#if enable_idempotency}}</li>
+      <li>Require an <code class="language-plaintext highlighter-rouge">Idempotency-Key</code> header on the create endpoint, validating UUID format and short-circuiting replays with cached responses.
+{{/if}}</li>
+      <li>Validate incoming payloads using standard bean/model validation decorators.</li>
+    </ul>
+  </li>
+</ol>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

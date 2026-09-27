@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stack: Java 21 & Spring Boot 3.3+ | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">All Bricks</a></li>
+        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Stack: Java 21 & Spring Boot 3.3+</h1>
+    <div class="brick-meta">
+      <span>Category: <strong>stack</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/stack/java21-spring3.md</code></span>
+      <span>·</span>
+      <span>Author: jvm-platform-team</span>
+    </div>
+    <p>Modern Java features: immutable records, virtual threads, pattern matching, Jakarta EE 10</p>
+  </header>
+
+  
+  <section>
+    <h3>Configurable Parameters</h3>
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td><code>spring_boot_version</code></td>
+          <td>select</td>
+          <td><code>3.3.4</code></td>
+          <td>Target Spring Boot runtime version</td>
+        </tr>
+        
+        <tr>
+          <td><code>use_virtual_threads</code></td>
+          <td>boolean</td>
+          <td><code>true</code></td>
+          <td>Configure spring.threads.virtual.enabled=true for high concurrency I/O</td>
+        </tr>
+        
+        <tr>
+          <td><code>reactive_mode</code></td>
+          <td>select</td>
+          <td><code>Imperative + Virtual Threads</code></td>
+          <td>Concurrency and web framework architecture</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </section>
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h2 id="technology-stack-java-21--spring-boot-spring_boot_version">Technology Stack: Java 21 &amp; Spring Boot {{spring_boot_version}}</h2>
+
+<ul>
+  <li><strong>Java 21 Language Features</strong>:
+    <ul>
+      <li>Represent all request/response DTOs and domain events as immutable Java <code class="language-plaintext highlighter-rouge">record</code> classes.</li>
+      <li>Use sealed interfaces and switch pattern matching for exhaustive domain state transitions.</li>
+      <li>Rely on text blocks (<code class="language-plaintext highlighter-rouge">"""</code>) for inline SQL queries, JSON schemas, and templating.</li>
+    </ul>
+  </li>
+  <li><strong>Spring Boot Foundation</strong>:
+{{#if use_virtual_threads}}
+    <ul>
+      <li>Enable Virtual Threads (<code class="language-plaintext highlighter-rouge">spring.threads.virtual.enabled=true</code>) for blocking I/O, eliminating legacy thread-pool tuning.
+{{/if}}</li>
+      <li>Framework mode: {{reactive_mode}}.</li>
+      <li>Use standard Jakarta EE 10 annotations (<code class="language-plaintext highlighter-rouge">jakarta.validation.constraints.*</code>, <code class="language-plaintext highlighter-rouge">jakarta.persistence.*</code>).</li>
+      <li>Prefer constructor-based dependency injection with <code class="language-plaintext highlighter-rouge">final</code> fields; disallow <code class="language-plaintext highlighter-rouge">@Autowired</code> on fields.</li>
+      <li>Configure Jackson with <code class="language-plaintext highlighter-rouge">SerializationFeature.WRITE_DATES_AS_TIMESTAMPS = false</code> and <code class="language-plaintext highlighter-rouge">JavaTimeModule</code> for ISO-8601 formatting.</li>
+    </ul>
+  </li>
+</ul>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>
