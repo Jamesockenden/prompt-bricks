@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confluence Release Notes | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Prompt Bricks</a></li>
+        <li><a href="/prompt-store/">Prompt Store</a></li>
+        <li><a href="https://github.com/Jamesockenden/prompt-bricks" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Confluence Release Notes</h1>
+    <div class="brick-meta">
+      <span>Layer: <strong>Layer 4: Task Specification</strong></span>
+      <span>·</span>
+      <span>Version: <strong>1.0.0</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/4-task-specification/confluence/release-notes-page.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Draft Confluence release notes from Jira work items and a specified release.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h1 id="brick-release-notes-page">Brick: Release Notes Page</h1>
+
+<p><strong>Purpose:</strong> Draft Confluence release notes from verified changes in a release.</p>
+
+<h2 id="prompt">Prompt</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Draft Confluence release notes for {{release_scope}} for the {{audience}} audience.
+
+Use the supplied change list or records retrieved through an explicitly available integration. If neither is available, ask for the changes instead of guessing. Group verified changes under:
+- 🚀 New features
+- 🛠 Improvements
+- 🐛 Bug fixes
+- ⚠️ Breaking changes (include a one-line migration note for each)
+
+Write for {{audience}} — plain language if end users, more technical
+detail if internal engineers. Skip purely internal chores (CI, dependencies, formatting) unless the audience is internal engineers.
+
+Return a page draft for the {{space}} space. Publish it only if the user requests publication and an authorized Confluence integration is available; report success only after confirming the operation.
+</code></pre></div></div>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{{space}}</code>: target Confluence space</li>
+  <li><code class="language-plaintext highlighter-rouge">{{release_scope}}</code>: e.g. “fix version 2.4.0 in {{project_key}}”, “everything merged this sprint”</li>
+  <li><code class="language-plaintext highlighter-rouge">{{audience}}</code>: “end users” or “internal engineers”</li>
+</ul>
+
+<h2 id="usage-notes">Usage notes</h2>
+
+<ul>
+  <li>Provide a verified change list or an accessible release scope. Do not assume access to Jira or Confluence.</li>
+</ul>
+
+<h2 id="example-composition">Example composition</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ Brick: Release Notes ] + [ Brick: Release Notes Page ]
+</code></pre></div></div>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

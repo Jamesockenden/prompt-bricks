@@ -9,6 +9,19 @@
   const brickSearch = document.getElementById("brick-search");
   const brickResults = document.getElementById("brick-results");
   const noBricksFound = document.getElementById("no-bricks-found");
+  const previewDialog = document.getElementById("prompt-preview");
+  const previewTitle = document.getElementById("prompt-preview-title");
+  const previewStatus = document.getElementById("preview-status");
+  const previewContent = document.getElementById("prompt-preview-content");
+  const closePreviewButton = document.getElementById("close-preview");
+  const addPreviewedBrickButton = document.getElementById("add-previewed-brick");
+  const layerTitles = {
+    "Layer 1: Role and Persona": "Layer 1: Role and Persona",
+    "Layer 2: Base Instructions": "Layer 2: Base Instructions",
+    "Layer 3: Context Format": "Layer 3: Context Format",
+    "Layer 4: Task Specification": "Layer 4: Task Specification",
+    "Layer 5: Output Format": "Layer 5: Output Format",
+  };
 
   if (!buildButton || !copyButton || !output || !status || !tokenCount) {
     return;
@@ -109,8 +122,94 @@
     }
   }
 
+  function extractPromptText(promptDocument, title) {
+    const prompt = promptDocument.querySelector(".prompt-content");
+    if (!prompt) {
+      throw new Error(`Prompt content was missing for "${title}".`);
+    }
+
+    const promptHeading = Array.from(prompt.querySelectorAll("h2"))
+      .find((heading) => heading.textContent.trim().toLowerCase() === "prompt");
+    if (!promptHeading) {
+      return renderMarkdown(prompt).trim();
+    }
+
+    const sections = [];
+    let section = promptHeading.nextElementSibling;
+    while (section && !/^H[1-2]$/.test(section.tagName)) {
+      sections.push(section.tagName === "PRE" ? `${section.textContent.trim()}\n\n` : renderMarkdown(section));
+      section = section.nextElementSibling;
+    }
+    return sections.join("").trim();
+  }
+
+  async function loadPromptText(checkbox) {
+    const response = await fetch(checkbox.dataset.promptUrl);
+    if (!response.ok) {
+      throw new Error(`Could not load "${checkbox.dataset.promptTitle}" (${response.status}).`);
+    }
+
+    const promptDocument = new DOMParser().parseFromString(await response.text(), "text/html");
+    return extractPromptText(promptDocument, checkbox.dataset.promptTitle);
+  }
+
+  let activePreviewCheckbox = null;
+  let previewRequest = 0;
+
+  document.querySelectorAll("[data-preview-checkbox]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const checkbox = document.getElementById(button.dataset.previewCheckbox);
+      if (!(checkbox instanceof HTMLInputElement) || !previewDialog || !previewTitle
+        || !previewStatus || !previewContent || !addPreviewedBrickButton) {
+        return;
+      }
+
+      const request = ++previewRequest;
+      activePreviewCheckbox = checkbox;
+      previewTitle.textContent = checkbox.dataset.promptTitle;
+      previewStatus.textContent = "Loading prompt preview...";
+      previewContent.textContent = "";
+      addPreviewedBrickButton.disabled = true;
+      previewDialog.showModal();
+
+      try {
+        const promptText = await loadPromptText(checkbox);
+        if (request !== previewRequest) {
+          return;
+        }
+        previewContent.textContent = promptText;
+        previewStatus.textContent = "";
+        addPreviewedBrickButton.disabled = false;
+      } catch (error) {
+        if (request !== previewRequest) {
+          return;
+        }
+        previewStatus.textContent = error instanceof Error ? error.message : "Unable to load the prompt preview.";
+      }
+    });
+  });
+
+  closePreviewButton?.addEventListener("click", () => previewDialog?.close());
+  previewDialog?.addEventListener("close", () => {
+    if (!previewDialog.open) {
+      previewRequest += 1;
+    }
+  });
+  addPreviewedBrickButton?.addEventListener("click", () => {
+    if (!activePreviewCheckbox || !status) {
+      return;
+    }
+
+    activePreviewCheckbox.checked = true;
+    status.textContent = `"${activePreviewCheckbox.dataset.promptTitle}" added to the selection.`;
+    previewDialog?.close();
+  });
+
   buildButton.addEventListener("click", async () => {
-    const selected = checkboxes.filter((checkbox) => checkbox.checked);
+    const selected = checkboxes
+      .filter((checkbox) => checkbox.checked)
+      .sort((left, right) => left.dataset.promptLayer.localeCompare(right.dataset.promptLayer)
+        || left.dataset.promptTitle.localeCompare(right.dataset.promptTitle));
     status.textContent = "";
 
     if (selected.length === 0) {
@@ -123,34 +222,23 @@
     status.textContent = "Building prompt...";
 
     try {
-      const sections = await Promise.all(selected.map(async (checkbox) => {
-        const response = await fetch(checkbox.dataset.promptUrl);
-        if (!response.ok) {
-          throw new Error(`Could not load "${checkbox.dataset.promptTitle}" (${response.status}).`);
+      const sections = await Promise.all(selected.map(loadPromptText));
+
+      const groupedSections = new Map();
+      selected.forEach((checkbox, index) => {
+        const layer = checkbox.dataset.promptLayer;
+        const section = sections[index].trim();
+        if (!section) {
+          return;
         }
-
-        const document = new DOMParser().parseFromString(await response.text(), "text/html");
-        const prompt = document.querySelector(".prompt-content");
-        if (!prompt) {
-          throw new Error(`Prompt content was missing for "${checkbox.dataset.promptTitle}".`);
+        if (!groupedSections.has(layer)) {
+          groupedSections.set(layer, []);
         }
-
-        const promptHeading = Array.from(prompt.querySelectorAll("h2"))
-          .find((heading) => heading.textContent.trim().toLowerCase() === "prompt");
-        if (promptHeading) {
-          const sections = [];
-          let section = promptHeading.nextElementSibling;
-          while (section && !/^H[1-2]$/.test(section.tagName)) {
-            sections.push(section.tagName === "PRE" ? `${section.textContent.trim()}\n\n` : renderMarkdown(section));
-            section = section.nextElementSibling;
-          }
-          return sections.join("");
-        }
-
-        return renderMarkdown(prompt);
-      }));
-
-      output.value = sections.map((section) => section.trim()).filter(Boolean).join("\n\n---\n\n");
+        groupedSections.get(layer).push(section);
+      });
+      output.value = Array.from(groupedSections, ([layer, layerSections]) => (
+        `## ${layerTitles[layer] ?? layer}\n\n${layerSections.join("\n\n---\n\n")}`
+      )).join("\n\n---\n\n");
       tokenCount.firstChild.textContent = `Estimated token count: ${estimateTokenCount(output.value)} `;
       copyButton.disabled = false;
       status.textContent = `${selected.length} prompt brick${selected.length === 1 ? "" : "s"} combined.`;

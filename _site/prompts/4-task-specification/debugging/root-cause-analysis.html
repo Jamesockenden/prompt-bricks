@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Root Cause Analysis | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Prompt Bricks</a></li>
+        <li><a href="/prompt-store/">Prompt Store</a></li>
+        <li><a href="https://github.com/Jamesockenden/prompt-bricks" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Root Cause Analysis</h1>
+    <div class="brick-meta">
+      <span>Layer: <strong>Layer 4: Task Specification</strong></span>
+      <span>·</span>
+      <span>Version: <strong>1.0.0</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/4-task-specification/debugging/root-cause-analysis.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Diagnose a defect from symptoms and evidence before proposing a targeted fix.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h1 id="brick-root-cause-analysis">Brick: Root Cause Analysis</h1>
+
+<p><strong>Category:</strong> debugging
+<strong>Purpose:</strong> Systematically diagnose a bug from symptoms, logs, and code, rather than jumping to the first plausible fix.</p>
+
+<h2 id="prompt">Prompt</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Diagnose the root cause of the bug described below. Work through it
+systematically:
+
+1. Restate the observed symptom vs. expected behaviour
+2. List the plausible causes, ranked by likelihood, with the reasoning
+   for each
+3. For the most likely cause(s), point to the specific line(s) of code
+   or log evidence that support it
+4. Propose a fix for the root cause (not just a patch for the symptom)
+5. Note any other latent bugs you noticed while investigating, even if
+   unrelated to this issue
+
+Do not propose a fix before completing steps 1-3 — if the evidence is
+insufficient to be confident, say what additional log/data you'd need
+instead of guessing.
+
+Bug report / symptom:
+"""
+{{bug_report}}
+"""
+
+Relevant logs:
+"""
+{{logs}}
+"""
+
+Relevant code:
+```{{language}}
+{{code}}
+```
+</code></pre></div></div>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{{bug_report}}</code>: description of the observed vs expected behaviour</li>
+  <li><code class="language-plaintext highlighter-rouge">{{logs}}</code>: relevant log output, stack traces, error messages</li>
+  <li><code class="language-plaintext highlighter-rouge">{{language}}</code>: programming language</li>
+  <li><code class="language-plaintext highlighter-rouge">{{code}}</code>: the code suspected to be involved</li>
+</ul>
+
+<h2 id="example-composition">Example composition</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ Brick: Root Cause Analysis ] + [ Brick: Refactor for Readability ] + [ Brick: Unit Test Generator ]
+</code></pre></div></div>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

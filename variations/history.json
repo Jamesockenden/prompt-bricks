@@ -9,27 +9,27 @@
     "stackedBricks": [
       {
         "instanceId": "init-1",
-        "brickId": "core/output-format-clean-code",
+        "brickId": "5-output-format/output-format-clean-code",
         "enabled": true
       },
       {
         "instanceId": "init-2",
-        "brickId": "core/architecture-guardrails",
+        "brickId": "2-base-instructions/architecture-guardrails",
         "enabled": true
       },
       {
         "instanceId": "init-3",
-        "brickId": "stack/java21-spring3",
+        "brickId": "3-context-format/java21-spring3",
         "enabled": true
       },
       {
         "instanceId": "init-4",
-        "brickId": "stack/gcp-cloudrun",
+        "brickId": "3-context-format/gcp-cloudrun",
         "enabled": true
       },
       {
         "instanceId": "init-5",
-        "brickId": "tasks/generate-controller",
+        "brickId": "4-task-specification/coding/generate-controller",
         "enabled": true
       }
     ],
@@ -55,22 +55,22 @@
     "stackedBricks": [
       {
         "instanceId": "init-10",
-        "brickId": "persona/staff-principal-architect",
+        "brickId": "1-role-and-persona/staff-principal-architect",
         "enabled": true
       },
       {
         "instanceId": "init-11",
-        "brickId": "core/output-format-clean-code",
+        "brickId": "5-output-format/output-format-clean-code",
         "enabled": true
       },
       {
         "instanceId": "init-12",
-        "brickId": "stack/gcp-cloudrun",
+        "brickId": "3-context-format/gcp-cloudrun",
         "enabled": true
       },
       {
         "instanceId": "init-13",
-        "brickId": "tasks/generate-harness-step",
+        "brickId": "4-task-specification/coding/generate-harness-step",
         "enabled": true
       }
     ],

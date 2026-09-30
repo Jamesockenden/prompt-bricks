@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context Format: Codebase and Environment | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Prompt Bricks</a></li>
+        <li><a href="/prompt-store/">Prompt Store</a></li>
+        <li><a href="https://github.com/Jamesockenden/prompt-bricks" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Context Format: Codebase and Environment</h1>
+    <div class="brick-meta">
+      <span>Layer: <strong>Layer 3: Context Format</strong></span>
+      <span>·</span>
+      <span>Version: <strong>1.0.0</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/3-context-format/codebase-context.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Provide structured, factual codebase, stack, architecture, and runtime context.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h2 id="codebase-and-environment-context">Codebase and Environment Context</h2>
+
+<p>Use the following project context as the source of truth. Treat omitted details as unknown; do not infer specific files, dependencies, schemas, or runtime behavior without evidence.</p>
+
+<h3 id="repository-and-scope">Repository and scope</h3>
+
+<ul>
+  <li>Repository or project: {{repository}}</li>
+  <li>Relevant paths and modules: {{relevant_paths}}</li>
+  <li>In-scope boundaries or constraints: {{scope_boundaries}}</li>
+</ul>
+
+<h3 id="technology-and-dependencies">Technology and dependencies</h3>
+
+<ul>
+  <li>Languages and framework versions: {{technology_stack}}</li>
+  <li>Relevant dependencies and versions: {{dependencies}}</li>
+  <li>Build, test, lint, and run commands: {{project_commands}}</li>
+</ul>
+
+<h3 id="architecture-and-data">Architecture and data</h3>
+
+<ul>
+  <li>Architectural patterns and module responsibilities: {{architecture}}</li>
+  <li>Relevant APIs, contracts, or database schemas: {{contracts_and_schemas}}</li>
+  <li>Existing conventions or representative examples: {{existing_patterns}}</li>
+</ul>
+
+<h3 id="environment-and-operations">Environment and operations</h3>
+
+<ul>
+  <li>Target runtime, deployment environment, and configuration: {{runtime_environment}}</li>
+  <li>Performance, security, availability, or compliance constraints: {{operational_constraints}}</li>
+  <li>Known limitations, unresolved questions, or assumptions: {{known_unknowns}}</li>
+</ul>
+
+<p>Use only context relevant to the task. If an essential detail is missing or contradictory, identify it instead of silently choosing an interpretation.</p>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

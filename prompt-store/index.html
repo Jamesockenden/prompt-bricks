@@ -1,0 +1,75 @@
+---
+layout: default
+title: "Prompt Store"
+---
+<h1>Prompt Store</h1>
+<p>Versioned, complete prompt snapshots for repeatable work. Each entry records its own version and the prompt-brick versions it was built from. Use Git history to review earlier snapshot revisions.</p>
+
+<section class="prompt-store-list" aria-label="Complete prompts">
+  {% assign complete_prompts = site.data.prompt_store | sort: "title" %}
+  {% for prompt in complete_prompts %}
+  <article class="stored-prompt">
+    <header>
+      <h2>{{ prompt.title | escape }}</h2>
+      <p>{{ prompt.description | escape }}</p>
+      <p class="store-meta">
+        <span>Version <strong>{{ prompt.version | escape }}</strong></span>
+        <span class="badge">{{ prompt.status | escape }}</span>
+      </p>
+    </header>
+    <details>
+      <summary>Preview complete prompt</summary>
+      <label for="stored-prompt-{{ prompt.id | escape }}">Prompt snapshot</label>
+      <textarea id="stored-prompt-{{ prompt.id | escape }}" rows="20" readonly>{{ prompt.content | escape }}</textarea>
+      <p><strong>Built from:</strong> {{ prompt.bricks | join: ", " | escape }}</p>
+      <p><strong>Version notes:</strong> {{ prompt.version_notes | escape }}</p>
+    </details>
+    <div class="store-actions">
+      <button type="button" data-copy-prompt="stored-prompt-{{ prompt.id | escape }}">Copy prompt</button>
+      <span role="status" aria-live="polite"></span>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<style>
+  .prompt-store-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .stored-prompt {
+    padding: 1.25rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+  }
+
+  .stored-prompt h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .store-meta,
+  .store-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .stored-prompt textarea {
+    font-family: ui-monospace, monospace;
+    font-size: 0.85rem;
+  }
+
+  .store-actions button {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  .store-actions [role="status"] {
+    color: #166534;
+    font-size: 0.9rem;
+  }
+</style>
+
+<script src="{{ '/assets/js/prompt-store.js' | relative_url }}" defer></script>

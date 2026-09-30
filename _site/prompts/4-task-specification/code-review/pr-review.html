@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pull Request Review | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Prompt Bricks</a></li>
+        <li><a href="/prompt-store/">Prompt Store</a></li>
+        <li><a href="https://github.com/Jamesockenden/prompt-bricks" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Pull Request Review</h1>
+    <div class="brick-meta">
+      <span>Layer: <strong>Layer 4: Task Specification</strong></span>
+      <span>·</span>
+      <span>Version: <strong>1.0.0</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/4-task-specification/code-review/pr-review.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Review a change for correctness, design, maintainability, and actionable issues.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h1 id="brick-pr-review">Brick: PR Review</h1>
+
+<p><strong>Category:</strong> code-review
+<strong>Purpose:</strong> Perform a structured pull request review covering correctness, design, and maintainability.</p>
+
+<h2 id="prompt">Prompt</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Review the following pull request diff as a senior engineer would.
+
+For each issue you find, give:
+- File and line/area
+- Severity (Blocking / Should fix / Nit)
+- The issue, in one or two sentences
+- A concrete suggestion (code snippet if it helps)
+
+Then give:
+- A one-paragraph summary of the change's overall quality
+- A verdict: Approve / Approve with comments / Request changes
+
+Review criteria: correctness, edge cases, security, performance,
+readability, test coverage, and consistency with the surrounding
+codebase. Do not comment on pure formatting if the project has an
+auto-formatter (assume it does unless told otherwise).
+
+PR description:
+"""
+{{pr_description}}
+"""
+
+Diff:
+```diff
+{{diff}}
+```
+</code></pre></div></div>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{{pr_description}}</code>: the PR title/description and any relevant ticket context</li>
+  <li><code class="language-plaintext highlighter-rouge">{{diff}}</code>: the code diff to review</li>
+</ul>
+
+<h2 id="example-composition">Example composition</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ Brick: PR Review ] + [ Brick: Security Audit ]
+</code></pre></div></div>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

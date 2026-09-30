@@ -14,7 +14,12 @@ defaults:
       path: "prompts"
     values:
       layout: "prompt"
+      prompt_kind: "brick"
       render_with_liquid: false
+  - scope:
+      path: "prompt-store"
+    values:
+      prompt_kind: "complete"
 
 exclude:
   - .github/

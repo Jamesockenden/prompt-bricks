@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture Decision Record (ADR) | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Prompt Bricks</a></li>
+        <li><a href="/prompt-store/">Prompt Store</a></li>
+        <li><a href="https://github.com/Jamesockenden/prompt-bricks" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Architecture Decision Record (ADR)</h1>
+    <div class="brick-meta">
+      <span>Layer: <strong>Layer 4: Task Specification</strong></span>
+      <span>·</span>
+      <span>Version: <strong>1.0.0</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/4-task-specification/architecture/adr-generator.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Record a technical decision, context, consequences, and alternatives in a reviewable ADR.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h1 id="brick-architecture-decision-record-adr">Brick: Architecture Decision Record (ADR)</h1>
+
+<p><strong>Category:</strong> architecture
+<strong>Purpose:</strong> Produce a single ADR documenting a technical decision, in the standard ADR format, for the project’s decision log.</p>
+
+<h2 id="prompt">Prompt</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Write an Architecture Decision Record for the decision described below,
+using this format:
+
+# ADR-{{number}}: {{title}}
+
+## Status
+{{status}} (Proposed / Accepted / Superseded)
+
+## Context
+What situation or problem led to this decision? What forces (technical,
+business, team) are in play?
+
+## Decision
+State the decision plainly, in one paragraph.
+
+## Consequences
+What becomes easier or harder as a result? Include both positive and
+negative consequences honestly.
+
+## Alternatives considered
+List each alternative with a one-line reason it was not chosen.
+
+Decision details:
+"""
+{{decision_details}}
+"""
+</code></pre></div></div>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{{number}}</code>: ADR sequence number</li>
+  <li><code class="language-plaintext highlighter-rouge">{{title}}</code>: short decision title</li>
+  <li><code class="language-plaintext highlighter-rouge">{{status}}</code>: current status of the decision</li>
+  <li><code class="language-plaintext highlighter-rouge">{{decision_details}}</code>: notes, discussion, or options being weighed</li>
+</ul>
+
+<h2 id="example-composition">Example composition</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ Brick: System Design Document ] + [ Brick: Architecture Decision Record ]
+</code></pre></div></div>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

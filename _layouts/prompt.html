@@ -5,7 +5,9 @@ layout: default
   <header>
     <h1>{{ page.title }}</h1>
     <div class="brick-meta">
-      <span>Category: <strong>{{ page.category }}</strong></span>
+      <span>Layer: <strong>{{ page.category }}</strong></span>
+      <span>·</span>
+      <span>Version: <strong>{{ page.prompt_version | default: "1.0.0" }}</strong></span>
       <span>·</span>
       <span>Path: <code>{{ page.path }}</code></span>
       <span>·</span>

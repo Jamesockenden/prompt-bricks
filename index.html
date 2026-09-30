@@ -3,15 +3,15 @@ layout: default
 title: "Prompt Brick Catalog"
 ---
 <h2>Prompt Bricks Library</h2>
-<p>Build a task-specific prompt from small, focused instructions. Each brick has a page for review; only its prompt template is added to the combined prompt.</p>
+<p>Compose assistant-agnostic prompts from five ordered layers: role and persona, base instructions, context format, task specification, and output format. Preview each brick before adding it; only its prompt template is added to the combined prompt.</p>
 
 <section class="builder" aria-labelledby="builder-title">
   <h3 id="builder-title">Build a combined prompt</h3>
-  <p>Start with a task brick, then add only the requirements, codebase context, technology constraints, or output format needed for this task. Review and fill in each brick's <code>{% raw %}{{placeholder}}{% endraw %}</code> values before sending the result to your coding assistant.</p>
-  {% assign prompt_pages = site.pages | where_exp: "page", "page.category" | sort: "category" %}
+  <p>Preview a brick to inspect the exact text that will be included, then add only the layers and bricks that apply. The combined prompt is ordered by layer; review and fill in each brick's <code>{% raw %}{{placeholder}}{% endraw %}</code> values before sending it to your assistant.</p>
+  {% assign prompt_pages = site.pages | where: "prompt_kind", "brick" | sort: "category" %}
   {% assign prompt_categories = prompt_pages | map: "category" | uniq | sort %}
   <div class="brick-filters">
-    <label for="category-filter">Filter by category
+    <label for="category-filter">Filter by layer
       <select id="category-filter">
         <option value="">All categories</option>
         {% for category in prompt_categories %}
@@ -26,16 +26,28 @@ title: "Prompt Brick Catalog"
   <p id="brick-results" role="status" aria-live="polite"></p>
   <div class="brick-list">
 {% for prompt in prompt_pages %}
-<label class="brick-card" for="brick-{{ forloop.index }}" data-prompt-category="{{ prompt.category | escape }}" data-prompt-search="{{ prompt.title | escape }} {{ prompt.description | escape }}">
-  <input id="brick-{{ forloop.index }}" type="checkbox" data-prompt-url="{{ prompt.url | relative_url }}" data-prompt-title="{{ prompt.title | escape }}">
-  <span>
+<article class="brick-card" data-prompt-category="{{ prompt.category | escape }}" data-prompt-search="{{ prompt.title | escape }} {{ prompt.description | escape }}">
+  <input id="brick-{{ forloop.index }}" type="checkbox" aria-label="Add {{ prompt.title | escape }} to the combined prompt" data-prompt-url="{{ prompt.url | relative_url }}" data-prompt-title="{{ prompt.title | escape }}" data-prompt-layer="{{ prompt.category | escape }}">
+  <div class="brick-card-details">
     <strong><a href="{{ prompt.url | relative_url }}">{{ prompt.title }}</a></strong>
-    <small>{{ prompt.category }} · {{ prompt.filename }}</small>
-    <span>{{ prompt.description }}</span>
-  </span>
-</label>
+    <small>{{ prompt.category }} · v{{ prompt.prompt_version | default: "1.0.0" }} · {{ prompt.filename }}</small>
+    <p>{{ prompt.description }}</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-{{ forloop.index }}">Preview</button>
+</article>
 {% endfor %}
   </div>
+  <dialog id="prompt-preview" aria-labelledby="prompt-preview-title">
+    <div class="preview-header">
+      <h3 id="prompt-preview-title">Prompt preview</h3>
+      <button id="close-preview" class="secondary" type="button">Close</button>
+    </div>
+    <p id="preview-status" role="status" aria-live="polite"></p>
+    <pre id="prompt-preview-content"></pre>
+    <div class="preview-actions">
+      <button id="add-previewed-brick" type="button" disabled>Add this brick</button>
+    </div>
+  </dialog>
   <p id="no-bricks-found" hidden>No prompt bricks match these filters.</p>
   <div class="builder-actions">
     <button id="build-prompt" type="button">Build combined prompt</button>
@@ -85,19 +97,24 @@ title: "Prompt Brick Catalog"
   .brick-card {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     gap: 1rem;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     padding: 1rem;
-    cursor: pointer;
     font-size: 0.9rem;
   }
 
   .brick-card input {
-    margin-top: 0.35rem;
+    flex: 0 0 auto;
+    margin-top: 0.25rem;
   }
 
-  .brick-card span span,
+  .brick-card-details {
+    flex: 1;
+    min-width: 0;
+  }
+
   .brick-card small {
     display: block;
     color: #64748b;
@@ -105,6 +122,74 @@ title: "Prompt Brick Catalog"
 
   .brick-card strong {
     display: block;
+  }
+
+  .brick-card p {
+    margin: 0.35rem 0 0;
+    color: #64748b;
+  }
+
+  .preview-brick {
+    flex: 0 0 auto;
+  }
+
+  #prompt-preview {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: min(54rem, calc(100vw - 2rem));
+    min-width: 0;
+    height: fit-content;
+    min-height: 0;
+    max-width: calc(100vw - 2rem);
+    max-height: min(85vh, 52rem);
+    margin: auto;
+    padding: 1.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: inherit;
+    background: Canvas;
+  }
+
+  #prompt-preview[open] {
+    display: flex;
+  }
+
+  #prompt-preview::backdrop {
+    background: rgb(15 23 42 / 60%);
+  }
+
+  .preview-header,
+  .preview-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .preview-header h3 {
+    margin: 0;
+  }
+
+  #prompt-preview-content {
+    max-height: 60vh;
+    overflow: auto;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: 0.9rem/1.5 ui-monospace, monospace;
+  }
+
+  #preview-status:empty {
+    display: none;
+  }
+
+  .preview-actions {
+    justify-content: flex-end;
   }
 
   .builder-actions {
@@ -140,6 +225,56 @@ title: "Prompt Brick Catalog"
   #combined-prompt {
     font-family: ui-monospace, monospace;
     font-size: 0.85rem;
+  }
+
+  @media (max-width: 36rem) {
+    .brick-card {
+      flex-wrap: wrap;
+    }
+
+    .brick-card-details {
+      flex-basis: calc(100% - 3rem);
+    }
+
+    .preview-brick {
+      margin-left: 2rem;
+    }
+
+    #prompt-preview {
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+      max-height: calc(100vh - 1rem);
+      max-height: calc(100dvh - 1rem);
+      padding: 0.75rem;
+    }
+
+    .preview-header {
+      align-items: flex-start;
+    }
+
+    .preview-header h3 {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    #prompt-preview-content {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      box-sizing: border-box;
+      max-height: 50vh;
+      padding: 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .preview-actions {
+      width: 100%;
+    }
+
+    .preview-actions button {
+      width: 100%;
+      margin-bottom: 0;
+    }
   }
 
 </style>

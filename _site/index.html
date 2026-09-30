@@ -24,50 +24,33 @@
         <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
       </ul>
       <ul>
-        <li><a href="/">All Bricks</a></li>
-        <li><a href="https://github.com" target="_blank">Git Repository</a></li>
+        <li><a href="/">Prompt Bricks</a></li>
+        <li><a href="/prompt-store/">Prompt Store</a></li>
+        <li><a href="https://github.com/Jamesockenden/prompt-bricks" target="_blank">Git Repository</a></li>
       </ul>
     </nav>
     <h2>Prompt Bricks Library</h2>
-<p>Build a task-specific prompt from small, focused instructions. Each brick has a page for review; only its prompt template is added to the combined prompt.</p>
+<p>Compose assistant-agnostic prompts from five ordered layers: role and persona, base instructions, context format, task specification, and output format. Preview each brick before adding it; only its prompt template is added to the combined prompt.</p>
 
 <section class="builder" aria-labelledby="builder-title">
   <h3 id="builder-title">Build a combined prompt</h3>
-  <p>Start with a task brick, then add only the requirements, codebase context, technology constraints, or output format needed for this task. Review and fill in each brick's <code>{{placeholder}}</code> values before sending the result to your coding assistant.</p>
+  <p>Preview a brick to inspect the exact text that will be included, then add only the layers and bricks that apply. The combined prompt is ordered by layer; review and fill in each brick's <code>{{placeholder}}</code> values before sending it to your assistant.</p>
   
   
   <div class="brick-filters">
-    <label for="category-filter">Filter by category
+    <label for="category-filter">Filter by layer
       <select id="category-filter">
         <option value="">All categories</option>
         
-        <option value="architecture">architecture</option>
+        <option value="Layer 1: Role and Persona">Layer 1: Role and Persona</option>
         
-        <option value="code-review">code-review</option>
+        <option value="Layer 2: Base Instructions">Layer 2: Base Instructions</option>
         
-        <option value="coding">coding</option>
+        <option value="Layer 3: Context Format">Layer 3: Context Format</option>
         
-        <option value="core">core</option>
+        <option value="Layer 4: Task Specification">Layer 4: Task Specification</option>
         
-        <option value="debugging">debugging</option>
-        
-        <option value="deployment">deployment</option>
-        
-        <option value="documentation">documentation</option>
-        
-        <option value="persona">persona</option>
-        
-        <option value="requirements">requirements</option>
-        
-        <option value="rovo / Confluence">rovo / Confluence</option>
-        
-        <option value="rovo / Jira">rovo / Jira</option>
-        
-        <option value="stack">stack</option>
-        
-        <option value="tasks">tasks</option>
-        
-        <option value="testing">testing</option>
+        <option value="Layer 5: Output Format">Layer 5: Output Format</option>
         
       </select>
     </label>
@@ -78,322 +61,398 @@
   <p id="brick-results" role="status" aria-live="polite"></p>
   <div class="brick-list">
 
-<label class="brick-card" for="brick-1" data-prompt-category="architecture" data-prompt-search="Architecture Decision Record (ADR) Record a technical decision, context, consequences, and alternatives in a reviewable ADR.">
-  <input id="brick-1" type="checkbox" data-prompt-url="/prompts/architecture/adr-generator.html" data-prompt-title="Architecture Decision Record (ADR)">
-  <span>
-    <strong><a href="/prompts/architecture/adr-generator.html">Architecture Decision Record (ADR)</a></strong>
-    <small>architecture · adr-generator.md</small>
-    <span>Record a technical decision, context, consequences, and alternatives in a reviewable ADR.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 1: Role and Persona" data-prompt-search="Role and Persona: Principal Engineer Authoritative, defense-in-depth security mindset, enterprise resiliency, zero fluff">
+  <input id="brick-1" type="checkbox" aria-label="Add Role and Persona: Principal Engineer to the combined prompt" data-prompt-url="/prompts/1-role-and-persona/principal-architect.html" data-prompt-title="Role and Persona: Principal Engineer" data-prompt-layer="Layer 1: Role and Persona">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/1-role-and-persona/principal-architect.html">Role and Persona: Principal Engineer</a></strong>
+    <small>Layer 1: Role and Persona · v1.0.0 · staff-principal-architect.md</small>
+    <p>Authoritative, defense-in-depth security mindset, enterprise resiliency, zero fluff</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-1">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-2" data-prompt-category="architecture" data-prompt-search="API Spec Generator Create an OpenAPI specification from a plain-language description of API behavior.">
-  <input id="brick-2" type="checkbox" data-prompt-url="/prompts/architecture/api-spec-generator.html" data-prompt-title="API Spec Generator">
-  <span>
-    <strong><a href="/prompts/architecture/api-spec-generator.html">API Spec Generator</a></strong>
-    <small>architecture · api-spec-generator.md</small>
-    <span>Create an OpenAPI specification from a plain-language description of API behavior.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 2: Base Instructions" data-prompt-search="Base Instructions: Cloud Architecture Guardrails Zero inline secrets, 12-factor configuration, health probes, and structured JSON observability">
+  <input id="brick-2" type="checkbox" aria-label="Add Base Instructions: Cloud Architecture Guardrails to the combined prompt" data-prompt-url="/prompts/2-base-instructions/architecture-guardrails.html" data-prompt-title="Base Instructions: Cloud Architecture Guardrails" data-prompt-layer="Layer 2: Base Instructions">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/2-base-instructions/architecture-guardrails.html">Base Instructions: Cloud Architecture Guardrails</a></strong>
+    <small>Layer 2: Base Instructions · v1.0.0 · architecture-guardrails.md</small>
+    <p>Zero inline secrets, 12-factor configuration, health probes, and structured JSON observability</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-2">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-3" data-prompt-category="architecture" data-prompt-search="System Design Document Draft a structured technical design for a system or feature, ready for team review.">
-  <input id="brick-3" type="checkbox" data-prompt-url="/prompts/architecture/system-design-doc.html" data-prompt-title="System Design Document">
-  <span>
-    <strong><a href="/prompts/architecture/system-design-doc.html">System Design Document</a></strong>
-    <small>architecture · system-design-doc.md</small>
-    <span>Draft a structured technical design for a system or feature, ready for team review.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 2: Base Instructions" data-prompt-search="Base Instructions: Engineering Quality Gates Set portable, non-negotiable quality expectations for implementation work.">
+  <input id="brick-3" type="checkbox" aria-label="Add Base Instructions: Engineering Quality Gates to the combined prompt" data-prompt-url="/prompts/2-base-instructions/engineering-quality-gates.html" data-prompt-title="Base Instructions: Engineering Quality Gates" data-prompt-layer="Layer 2: Base Instructions">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/2-base-instructions/engineering-quality-gates.html">Base Instructions: Engineering Quality Gates</a></strong>
+    <small>Layer 2: Base Instructions · v1.0.0 · engineering-quality-gates.md</small>
+    <p>Set portable, non-negotiable quality expectations for implementation work.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-3">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-4" data-prompt-category="code-review" data-prompt-search="Pull Request Review Review a change for correctness, design, maintainability, and actionable issues.">
-  <input id="brick-4" type="checkbox" data-prompt-url="/prompts/code-review/pr-review.html" data-prompt-title="Pull Request Review">
-  <span>
-    <strong><a href="/prompts/code-review/pr-review.html">Pull Request Review</a></strong>
-    <small>code-review · pr-review.md</small>
-    <span>Review a change for correctness, design, maintainability, and actionable issues.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 3: Context Format" data-prompt-search="Context Format: Codebase and Environment Provide structured, factual codebase, stack, architecture, and runtime context.">
+  <input id="brick-4" type="checkbox" aria-label="Add Context Format: Codebase and Environment to the combined prompt" data-prompt-url="/prompts/3-context-format/codebase-context.html" data-prompt-title="Context Format: Codebase and Environment" data-prompt-layer="Layer 3: Context Format">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/3-context-format/codebase-context.html">Context Format: Codebase and Environment</a></strong>
+    <small>Layer 3: Context Format · v1.0.0 · codebase-context.md</small>
+    <p>Provide structured, factual codebase, stack, architecture, and runtime context.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-4">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-5" data-prompt-category="code-review" data-prompt-search="Security Audit Assess code or a diff for security weaknesses and actionable remediation.">
-  <input id="brick-5" type="checkbox" data-prompt-url="/prompts/code-review/security-audit.html" data-prompt-title="Security Audit">
-  <span>
-    <strong><a href="/prompts/code-review/security-audit.html">Security Audit</a></strong>
-    <small>code-review · security-audit.md</small>
-    <span>Assess code or a diff for security weaknesses and actionable remediation.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 3: Context Format" data-prompt-search="Runtime: GCP Cloud Run Container Contract Port 8080 binding, non-root execution, Workload Identity, fast startup optimization">
+  <input id="brick-5" type="checkbox" aria-label="Add Runtime: GCP Cloud Run Container Contract to the combined prompt" data-prompt-url="/prompts/3-context-format/gcp-cloudrun.html" data-prompt-title="Runtime: GCP Cloud Run Container Contract" data-prompt-layer="Layer 3: Context Format">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/3-context-format/gcp-cloudrun.html">Runtime: GCP Cloud Run Container Contract</a></strong>
+    <small>Layer 3: Context Format · v1.0.0 · gcp-cloudrun.md</small>
+    <p>Port 8080 binding, non-root execution, Workload Identity, fast startup optimization</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-5">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-6" data-prompt-category="coding" data-prompt-search="Implement from Spec Implement a requirement while matching the conventions and boundaries of the existing codebase.">
-  <input id="brick-6" type="checkbox" data-prompt-url="/prompts/coding/implement-from-spec.html" data-prompt-title="Implement from Spec">
-  <span>
-    <strong><a href="/prompts/coding/implement-from-spec.html">Implement from Spec</a></strong>
-    <small>coding · implement-from-spec.md</small>
-    <span>Implement a requirement while matching the conventions and boundaries of the existing codebase.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 3: Context Format" data-prompt-search="Stack: Java 21 &amp; Spring Boot 3.3+ Modern Java features: immutable records, virtual threads, pattern matching, Jakarta EE 10">
+  <input id="brick-6" type="checkbox" aria-label="Add Stack: Java 21 &amp; Spring Boot 3.3+ to the combined prompt" data-prompt-url="/prompts/3-context-format/java21-spring3.html" data-prompt-title="Stack: Java 21 &amp; Spring Boot 3.3+" data-prompt-layer="Layer 3: Context Format">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/3-context-format/java21-spring3.html">Stack: Java 21 & Spring Boot 3.3+</a></strong>
+    <small>Layer 3: Context Format · v1.0.0 · java21-spring3.md</small>
+    <p>Modern Java features: immutable records, virtual threads, pattern matching, Jakarta EE 10</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-6">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-7" data-prompt-category="coding" data-prompt-search="Refactor for Readability Improve code clarity and maintainability without changing externally observable behavior.">
-  <input id="brick-7" type="checkbox" data-prompt-url="/prompts/coding/refactor-for-readability.html" data-prompt-title="Refactor for Readability">
-  <span>
-    <strong><a href="/prompts/coding/refactor-for-readability.html">Refactor for Readability</a></strong>
-    <small>coding · refactor-for-readability.md</small>
-    <span>Improve code clarity and maintainability without changing externally observable behavior.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Acceptance Criteria (Gherkin) Convert a feature request into clear, testable Given/When/Then acceptance criteria.">
+  <input id="brick-7" type="checkbox" aria-label="Add Acceptance Criteria (Gherkin) to the combined prompt" data-prompt-url="/prompts/4-task-specification/requirements/acceptance-criteria-gherkin.html" data-prompt-title="Acceptance Criteria (Gherkin)" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/requirements/acceptance-criteria-gherkin.html">Acceptance Criteria (Gherkin)</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · acceptance-criteria-gherkin.md</small>
+    <p>Convert a feature request into clear, testable Given/When/Then acceptance criteria.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-7">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-8" data-prompt-category="core" data-prompt-search="Architecture Guardrails &amp; Security Zero inline secrets, 12-factor configuration, health probes, and structured JSON observability">
-  <input id="brick-8" type="checkbox" data-prompt-url="/prompts/architecture/architecture-guardrails.html" data-prompt-title="Architecture Guardrails &amp; Security">
-  <span>
-    <strong><a href="/prompts/architecture/architecture-guardrails.html">Architecture Guardrails & Security</a></strong>
-    <small>core · architecture-guardrails.md</small>
-    <span>Zero inline secrets, 12-factor configuration, health probes, and structured JSON observability</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Architecture Decision Record (ADR) Record a technical decision, context, consequences, and alternatives in a reviewable ADR.">
+  <input id="brick-8" type="checkbox" aria-label="Add Architecture Decision Record (ADR) to the combined prompt" data-prompt-url="/prompts/4-task-specification/architecture/adr-generator.html" data-prompt-title="Architecture Decision Record (ADR)" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/architecture/adr-generator.html">Architecture Decision Record (ADR)</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · adr-generator.md</small>
+    <p>Record a technical decision, context, consequences, and alternatives in a reviewable ADR.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-8">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-9" data-prompt-category="core" data-prompt-search="Output Format: Strict Clean Code Enforces a single markdown code block, production-ready syntax, zero conversational fluff">
-  <input id="brick-9" type="checkbox" data-prompt-url="/prompts/format/output-format-clean-code.html" data-prompt-title="Output Format: Strict Clean Code">
-  <span>
-    <strong><a href="/prompts/format/output-format-clean-code.html">Output Format: Strict Clean Code</a></strong>
-    <small>core · output-format-clean-code.md</small>
-    <span>Enforces a single markdown code block, production-ready syntax, zero conversational fluff</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="API Spec Generator Create an OpenAPI specification from a plain-language description of API behavior.">
+  <input id="brick-9" type="checkbox" aria-label="Add API Spec Generator to the combined prompt" data-prompt-url="/prompts/4-task-specification/architecture/api-spec-generator.html" data-prompt-title="API Spec Generator" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/architecture/api-spec-generator.html">API Spec Generator</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · api-spec-generator.md</small>
+    <p>Create an OpenAPI specification from a plain-language description of API behavior.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-9">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-10" data-prompt-category="debugging" data-prompt-search="Root Cause Analysis Diagnose a defect from symptoms and evidence before proposing a targeted fix.">
-  <input id="brick-10" type="checkbox" data-prompt-url="/prompts/debugging/root-cause-analysis.html" data-prompt-title="Root Cause Analysis">
-  <span>
-    <strong><a href="/prompts/debugging/root-cause-analysis.html">Root Cause Analysis</a></strong>
-    <small>debugging · root-cause-analysis.md</small>
-    <span>Diagnose a defect from symptoms and evidence before proposing a targeted fix.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Bug Report Ticket Turn a rough defect report into a clear, actionable Jira bug ticket.">
+  <input id="brick-10" type="checkbox" aria-label="Add Bug Report Ticket to the combined prompt" data-prompt-url="/prompts/4-task-specification/jira/bug-report-ticket.html" data-prompt-title="Bug Report Ticket" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/jira/bug-report-ticket.html">Bug Report Ticket</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · bug-report-ticket.md</small>
+    <p>Turn a rough defect report into a clear, actionable Jira bug ticket.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-10">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-11" data-prompt-category="deployment" data-prompt-search="Release Notes Turn verified changes into clear, audience-appropriate release notes.">
-  <input id="brick-11" type="checkbox" data-prompt-url="/prompts/deployment/release-notes.html" data-prompt-title="Release Notes">
-  <span>
-    <strong><a href="/prompts/deployment/release-notes.html">Release Notes</a></strong>
-    <small>deployment · release-notes.md</small>
-    <span>Turn verified changes into clear, audience-appropriate release notes.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Inline Documentation Add useful comments and docstrings that explain intent without changing behavior.">
+  <input id="brick-11" type="checkbox" aria-label="Add Inline Documentation to the combined prompt" data-prompt-url="/prompts/4-task-specification/documentation/code-comments.html" data-prompt-title="Inline Documentation" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/documentation/code-comments.html">Inline Documentation</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · code-comments.md</small>
+    <p>Add useful comments and docstrings that explain intent without changing behavior.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-11">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-12" data-prompt-category="deployment" data-prompt-search="Rollback Plan Create a concrete rollback and mitigation plan with triggers and validation steps.">
-  <input id="brick-12" type="checkbox" data-prompt-url="/prompts/deployment/rollback-plan.html" data-prompt-title="Rollback Plan">
-  <span>
-    <strong><a href="/prompts/deployment/rollback-plan.html">Rollback Plan</a></strong>
-    <small>deployment · rollback-plan.md</small>
-    <span>Create a concrete rollback and mitigation plan with triggers and validation steps.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Edge Case Finder Find missing edge cases and failure scenarios in a specification or implementation.">
+  <input id="brick-12" type="checkbox" aria-label="Add Edge Case Finder to the combined prompt" data-prompt-url="/prompts/4-task-specification/testing/edge-case-finder.html" data-prompt-title="Edge Case Finder" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/testing/edge-case-finder.html">Edge Case Finder</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · edge-case-finder.md</small>
+    <p>Find missing edge cases and failure scenarios in a specification or implementation.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-12">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-13" data-prompt-category="documentation" data-prompt-search="README Generator Create a complete, accurate README from project context and intended audience.">
-  <input id="brick-13" type="checkbox" data-prompt-url="/prompts/documentation/readme-generator.html" data-prompt-title="README Generator">
-  <span>
-    <strong><a href="/prompts/documentation/readme-generator.html">README Generator</a></strong>
-    <small>documentation · readme-generator.md</small>
-    <span>Create a complete, accurate README from project context and intended audience.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Epic Breakdown Break an initiative into scoped, dependency-aware Jira stories and tasks.">
+  <input id="brick-13" type="checkbox" aria-label="Add Epic Breakdown to the combined prompt" data-prompt-url="/prompts/4-task-specification/jira/epic-breakdown.html" data-prompt-title="Epic Breakdown" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/jira/epic-breakdown.html">Epic Breakdown</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · epic-breakdown.md</small>
+    <p>Break an initiative into scoped, dependency-aware Jira stories and tasks.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-13">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-14" data-prompt-category="documentation" data-prompt-search="Inline Documentation Add useful comments and docstrings that explain intent without changing behavior.">
-  <input id="brick-14" type="checkbox" data-prompt-url="/prompts/documentation/code-comments.html" data-prompt-title="Inline Documentation">
-  <span>
-    <strong><a href="/prompts/documentation/code-comments.html">Inline Documentation</a></strong>
-    <small>documentation · code-comments.md</small>
-    <span>Add useful comments and docstrings that explain intent without changing behavior.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Task: Generate RESTful API Controller OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotency, pagination">
+  <input id="brick-14" type="checkbox" aria-label="Add Task: Generate RESTful API Controller to the combined prompt" data-prompt-url="/prompts/4-task-specification/coding/generate-controller.html" data-prompt-title="Task: Generate RESTful API Controller" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/coding/generate-controller.html">Task: Generate RESTful API Controller</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · generate-controller.md</small>
+    <p>OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotency, pagination</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-14">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-15" data-prompt-category="persona" data-prompt-search="Persona: Staff Principal Architect Authoritative, defense-in-depth security mindset, enterprise resiliency, zero fluff">
-  <input id="brick-15" type="checkbox" data-prompt-url="/prompts/persona/staff-principal-architect.html" data-prompt-title="Persona: Staff Principal Architect">
-  <span>
-    <strong><a href="/prompts/persona/staff-principal-architect.html">Persona: Staff Principal Architect</a></strong>
-    <small>persona · staff-principal-architect.md</small>
-    <span>Authoritative, defense-in-depth security mindset, enterprise resiliency, zero fluff</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Task: CI/CD Pipeline &amp; Harness Step Automated container build, Trivy vulnerability scanning, SonarQube quality gate, canary rollouts">
+  <input id="brick-15" type="checkbox" aria-label="Add Task: CI/CD Pipeline &amp; Harness Step to the combined prompt" data-prompt-url="/prompts/4-task-specification/coding/generate-harness-step.html" data-prompt-title="Task: CI/CD Pipeline &amp; Harness Step" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/coding/generate-harness-step.html">Task: CI/CD Pipeline & Harness Step</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · generate-harness-step.md</small>
+    <p>Automated container build, Trivy vulnerability scanning, SonarQube quality gate, canary rollouts</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-15">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-16" data-prompt-category="requirements" data-prompt-search="Acceptance Criteria (Gherkin) Convert a feature request into clear, testable Given/When/Then acceptance criteria.">
-  <input id="brick-16" type="checkbox" data-prompt-url="/prompts/requirements/acceptance-criteria-gherkin.html" data-prompt-title="Acceptance Criteria (Gherkin)">
-  <span>
-    <strong><a href="/prompts/requirements/acceptance-criteria-gherkin.html">Acceptance Criteria (Gherkin)</a></strong>
-    <small>requirements · acceptance-criteria-gherkin.md</small>
-    <span>Convert a feature request into clear, testable Given/When/Then acceptance criteria.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Task: Unit &amp; Integration Test Suite Unit and integration tests with Mockito, Testcontainers, and boundary coverage">
+  <input id="brick-16" type="checkbox" aria-label="Add Task: Unit &amp; Integration Test Suite to the combined prompt" data-prompt-url="/prompts/4-task-specification/testing/generate-test-suite.html" data-prompt-title="Task: Unit &amp; Integration Test Suite" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/testing/generate-test-suite.html">Task: Unit & Integration Test Suite</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · generate-test-suite.md</small>
+    <p>Unit and integration tests with Mockito, Testcontainers, and boundary coverage</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-16">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-17" data-prompt-category="requirements" data-prompt-search="User Story Generator Turn a stakeholder request into user stories with explicit acceptance criteria.">
-  <input id="brick-17" type="checkbox" data-prompt-url="/prompts/requirements/user-story-generator.html" data-prompt-title="User Story Generator">
-  <span>
-    <strong><a href="/prompts/requirements/user-story-generator.html">User Story Generator</a></strong>
-    <small>requirements · user-story-generator.md</small>
-    <span>Turn a stakeholder request into user stories with explicit acceptance criteria.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Implement from Spec Implement a requirement while matching the conventions and boundaries of the existing codebase.">
+  <input id="brick-17" type="checkbox" aria-label="Add Implement from Spec to the combined prompt" data-prompt-url="/prompts/4-task-specification/coding/implement-from-spec.html" data-prompt-title="Implement from Spec" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/coding/implement-from-spec.html">Implement from Spec</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · implement-from-spec.md</small>
+    <p>Implement a requirement while matching the conventions and boundaries of the existing codebase.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-17">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-18" data-prompt-category="rovo / Confluence" data-prompt-search="Technical Spec Page (Rovo) Draft a review-ready Confluence technical specification from supplied context.">
-  <input id="brick-18" type="checkbox" data-prompt-url="/prompts/rovo/confluence/technical-spec-page.html" data-prompt-title="Technical Spec Page (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/confluence/technical-spec-page.html">Technical Spec Page (Rovo)</a></strong>
-    <small>rovo / Confluence · technical-spec-page.md</small>
-    <span>Draft a review-ready Confluence technical specification from supplied context.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Jira Issue from Notes Convert unstructured discussion notes into a well-formed Jira issue draft.">
+  <input id="brick-18" type="checkbox" aria-label="Add Jira Issue from Notes to the combined prompt" data-prompt-url="/prompts/4-task-specification/jira/jira-issue-from-notes.html" data-prompt-title="Jira Issue from Notes" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/jira/jira-issue-from-notes.html">Jira Issue from Notes</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · jira-issue-from-notes.md</small>
+    <p>Convert unstructured discussion notes into a well-formed Jira issue draft.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-18">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-19" data-prompt-category="rovo / Confluence" data-prompt-search="Confluence Page Review (Rovo) Compare a draft Confluence page against a reference and identify specific gaps.">
-  <input id="brick-19" type="checkbox" data-prompt-url="/prompts/rovo/confluence/page-review-against-reference.html" data-prompt-title="Confluence Page Review (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/confluence/page-review-against-reference.html">Confluence Page Review (Rovo)</a></strong>
-    <small>rovo / Confluence · page-review-against-reference.md</small>
-    <span>Compare a draft Confluence page against a reference and identify specific gaps.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="JQL Search Assistant Translate a plain-language question into a precise Jira search and JQL query.">
+  <input id="brick-19" type="checkbox" aria-label="Add JQL Search Assistant to the combined prompt" data-prompt-url="/prompts/4-task-specification/jira/jql-search-assistant.html" data-prompt-title="JQL Search Assistant" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/jira/jql-search-assistant.html">JQL Search Assistant</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · jql-search-assistant.md</small>
+    <p>Translate a plain-language question into a precise Jira search and JQL query.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-19">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-20" data-prompt-category="rovo / Confluence" data-prompt-search="Page Summary and Action Items (Rovo) Summarize Confluence content into key points, decisions, and open action items.">
-  <input id="brick-20" type="checkbox" data-prompt-url="/prompts/rovo/confluence/page-summary-action-items.html" data-prompt-title="Page Summary and Action Items (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/confluence/page-summary-action-items.html">Page Summary and Action Items (Rovo)</a></strong>
-    <small>rovo / Confluence · page-summary-action-items.md</small>
-    <span>Summarize Confluence content into key points, decisions, and open action items.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Meeting Notes to Confluence Page Transform meeting notes into a structured Confluence page with decisions and actions.">
+  <input id="brick-20" type="checkbox" aria-label="Add Meeting Notes to Confluence Page to the combined prompt" data-prompt-url="/prompts/4-task-specification/confluence/meeting-notes-to-page.html" data-prompt-title="Meeting Notes to Confluence Page" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/confluence/meeting-notes-to-page.html">Meeting Notes to Confluence Page</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · meeting-notes-to-page.md</small>
+    <p>Transform meeting notes into a structured Confluence page with decisions and actions.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-20">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-21" data-prompt-category="rovo / Confluence" data-prompt-search="Retrospective Summary by Theme (Rovo) Group retrospective feedback into themes, insights, and owned action items.">
-  <input id="brick-21" type="checkbox" data-prompt-url="/prompts/rovo/confluence/retro-summary-by-theme.html" data-prompt-title="Retrospective Summary by Theme (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/confluence/retro-summary-by-theme.html">Retrospective Summary by Theme (Rovo)</a></strong>
-    <small>rovo / Confluence · retro-summary-by-theme.md</small>
-    <span>Group retrospective feedback into themes, insights, and owned action items.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Confluence Page Review Compare a draft Confluence page against a reference and identify specific gaps.">
+  <input id="brick-21" type="checkbox" aria-label="Add Confluence Page Review to the combined prompt" data-prompt-url="/prompts/4-task-specification/confluence/page-review-against-reference.html" data-prompt-title="Confluence Page Review" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/confluence/page-review-against-reference.html">Confluence Page Review</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · page-review-against-reference.md</small>
+    <p>Compare a draft Confluence page against a reference and identify specific gaps.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-21">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-22" data-prompt-category="rovo / Confluence" data-prompt-search="Confluence Release Notes (Rovo) Draft Confluence release notes from Jira work items and a specified release.">
-  <input id="brick-22" type="checkbox" data-prompt-url="/prompts/rovo/confluence/release-notes-page.html" data-prompt-title="Confluence Release Notes (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/confluence/release-notes-page.html">Confluence Release Notes (Rovo)</a></strong>
-    <small>rovo / Confluence · release-notes-page.md</small>
-    <span>Draft Confluence release notes from Jira work items and a specified release.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Page Summary and Action Items Summarize Confluence content into key points, decisions, and open action items.">
+  <input id="brick-22" type="checkbox" aria-label="Add Page Summary and Action Items to the combined prompt" data-prompt-url="/prompts/4-task-specification/confluence/page-summary-action-items.html" data-prompt-title="Page Summary and Action Items" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/confluence/page-summary-action-items.html">Page Summary and Action Items</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · page-summary-action-items.md</small>
+    <p>Summarize Confluence content into key points, decisions, and open action items.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-22">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-23" data-prompt-category="rovo / Confluence" data-prompt-search="Meeting Notes to Confluence Page (Rovo) Transform meeting notes into a structured Confluence page with decisions and actions.">
-  <input id="brick-23" type="checkbox" data-prompt-url="/prompts/rovo/confluence/meeting-notes-to-page.html" data-prompt-title="Meeting Notes to Confluence Page (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/confluence/meeting-notes-to-page.html">Meeting Notes to Confluence Page (Rovo)</a></strong>
-    <small>rovo / Confluence · meeting-notes-to-page.md</small>
-    <span>Transform meeting notes into a structured Confluence page with decisions and actions.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Pull Request Review Review a change for correctness, design, maintainability, and actionable issues.">
+  <input id="brick-23" type="checkbox" aria-label="Add Pull Request Review to the combined prompt" data-prompt-url="/prompts/4-task-specification/code-review/pr-review.html" data-prompt-title="Pull Request Review" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/code-review/pr-review.html">Pull Request Review</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · pr-review.md</small>
+    <p>Review a change for correctness, design, maintainability, and actionable issues.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-23">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-24" data-prompt-category="rovo / Jira" data-prompt-search="JQL Search Assistant (Rovo) Translate a plain-language question into a precise Jira search and JQL query.">
-  <input id="brick-24" type="checkbox" data-prompt-url="/prompts/rovo/jira/jql-search-assistant.html" data-prompt-title="JQL Search Assistant (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/jira/jql-search-assistant.html">JQL Search Assistant (Rovo)</a></strong>
-    <small>rovo / Jira · jql-search-assistant.md</small>
-    <span>Translate a plain-language question into a precise Jira search and JQL query.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="README Generator Create a complete, accurate README from project context and intended audience.">
+  <input id="brick-24" type="checkbox" aria-label="Add README Generator to the combined prompt" data-prompt-url="/prompts/4-task-specification/documentation/readme-generator.html" data-prompt-title="README Generator" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/documentation/readme-generator.html">README Generator</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · readme-generator.md</small>
+    <p>Create a complete, accurate README from project context and intended audience.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-24">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-25" data-prompt-category="rovo / Jira" data-prompt-search="Bug Report Ticket (Rovo) Turn a rough defect report into a clear, actionable Jira bug ticket.">
-  <input id="brick-25" type="checkbox" data-prompt-url="/prompts/rovo/jira/bug-report-ticket.html" data-prompt-title="Bug Report Ticket (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/jira/bug-report-ticket.html">Bug Report Ticket (Rovo)</a></strong>
-    <small>rovo / Jira · bug-report-ticket.md</small>
-    <span>Turn a rough defect report into a clear, actionable Jira bug ticket.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Refactor for Readability Improve code clarity and maintainability without changing externally observable behavior.">
+  <input id="brick-25" type="checkbox" aria-label="Add Refactor for Readability to the combined prompt" data-prompt-url="/prompts/4-task-specification/coding/refactor-for-readability.html" data-prompt-title="Refactor for Readability" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/coding/refactor-for-readability.html">Refactor for Readability</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · refactor-for-readability.md</small>
+    <p>Improve code clarity and maintainability without changing externally observable behavior.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-25">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-26" data-prompt-category="rovo / Jira" data-prompt-search="Jira Issue from Notes (Rovo) Convert unstructured discussion notes into a well-formed Jira issue draft.">
-  <input id="brick-26" type="checkbox" data-prompt-url="/prompts/rovo/jira/jira-issue-from-notes.html" data-prompt-title="Jira Issue from Notes (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/jira/jira-issue-from-notes.html">Jira Issue from Notes (Rovo)</a></strong>
-    <small>rovo / Jira · jira-issue-from-notes.md</small>
-    <span>Convert unstructured discussion notes into a well-formed Jira issue draft.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Confluence Release Notes Draft Confluence release notes from Jira work items and a specified release.">
+  <input id="brick-26" type="checkbox" aria-label="Add Confluence Release Notes to the combined prompt" data-prompt-url="/prompts/4-task-specification/confluence/release-notes-page.html" data-prompt-title="Confluence Release Notes" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/confluence/release-notes-page.html">Confluence Release Notes</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · release-notes-page.md</small>
+    <p>Draft Confluence release notes from Jira work items and a specified release.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-26">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-27" data-prompt-category="rovo / Jira" data-prompt-search="Sprint Status Summary (Rovo) Summarize live sprint progress, risks, blockers, and next steps for stakeholders.">
-  <input id="brick-27" type="checkbox" data-prompt-url="/prompts/rovo/jira/sprint-status-summary.html" data-prompt-title="Sprint Status Summary (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/jira/sprint-status-summary.html">Sprint Status Summary (Rovo)</a></strong>
-    <small>rovo / Jira · sprint-status-summary.md</small>
-    <span>Summarize live sprint progress, risks, blockers, and next steps for stakeholders.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Release Notes Turn verified changes into clear, audience-appropriate release notes.">
+  <input id="brick-27" type="checkbox" aria-label="Add Release Notes to the combined prompt" data-prompt-url="/prompts/4-task-specification/deployment/release-notes.html" data-prompt-title="Release Notes" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/deployment/release-notes.html">Release Notes</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · release-notes.md</small>
+    <p>Turn verified changes into clear, audience-appropriate release notes.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-27">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-28" data-prompt-category="rovo / Jira" data-prompt-search="Epic Breakdown (Rovo) Break an initiative into scoped, dependency-aware Jira stories and tasks.">
-  <input id="brick-28" type="checkbox" data-prompt-url="/prompts/rovo/jira/epic-breakdown.html" data-prompt-title="Epic Breakdown (Rovo)">
-  <span>
-    <strong><a href="/prompts/rovo/jira/epic-breakdown.html">Epic Breakdown (Rovo)</a></strong>
-    <small>rovo / Jira · epic-breakdown.md</small>
-    <span>Break an initiative into scoped, dependency-aware Jira stories and tasks.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Retrospective Summary by Theme Group retrospective feedback into themes, insights, and owned action items.">
+  <input id="brick-28" type="checkbox" aria-label="Add Retrospective Summary by Theme to the combined prompt" data-prompt-url="/prompts/4-task-specification/confluence/retro-summary-by-theme.html" data-prompt-title="Retrospective Summary by Theme" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/confluence/retro-summary-by-theme.html">Retrospective Summary by Theme</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · retro-summary-by-theme.md</small>
+    <p>Group retrospective feedback into themes, insights, and owned action items.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-28">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-29" data-prompt-category="stack" data-prompt-search="Stack: Java 21 &amp; Spring Boot 3.3+ Modern Java features: immutable records, virtual threads, pattern matching, Jakarta EE 10">
-  <input id="brick-29" type="checkbox" data-prompt-url="/prompts/stack/java21-spring3.html" data-prompt-title="Stack: Java 21 &amp; Spring Boot 3.3+">
-  <span>
-    <strong><a href="/prompts/stack/java21-spring3.html">Stack: Java 21 & Spring Boot 3.3+</a></strong>
-    <small>stack · java21-spring3.md</small>
-    <span>Modern Java features: immutable records, virtual threads, pattern matching, Jakarta EE 10</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Rollback Plan Create a concrete rollback and mitigation plan with triggers and validation steps.">
+  <input id="brick-29" type="checkbox" aria-label="Add Rollback Plan to the combined prompt" data-prompt-url="/prompts/4-task-specification/deployment/rollback-plan.html" data-prompt-title="Rollback Plan" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/deployment/rollback-plan.html">Rollback Plan</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · rollback-plan.md</small>
+    <p>Create a concrete rollback and mitigation plan with triggers and validation steps.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-29">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-30" data-prompt-category="stack" data-prompt-search="Runtime: GCP Cloud Run Container Contract Port 8080 binding, non-root execution, Workload Identity, fast startup optimization">
-  <input id="brick-30" type="checkbox" data-prompt-url="/prompts/stack/gcp-cloudrun.html" data-prompt-title="Runtime: GCP Cloud Run Container Contract">
-  <span>
-    <strong><a href="/prompts/stack/gcp-cloudrun.html">Runtime: GCP Cloud Run Container Contract</a></strong>
-    <small>stack · gcp-cloudrun.md</small>
-    <span>Port 8080 binding, non-root execution, Workload Identity, fast startup optimization</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Root Cause Analysis Diagnose a defect from symptoms and evidence before proposing a targeted fix.">
+  <input id="brick-30" type="checkbox" aria-label="Add Root Cause Analysis to the combined prompt" data-prompt-url="/prompts/4-task-specification/debugging/root-cause-analysis.html" data-prompt-title="Root Cause Analysis" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/debugging/root-cause-analysis.html">Root Cause Analysis</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · root-cause-analysis.md</small>
+    <p>Diagnose a defect from symptoms and evidence before proposing a targeted fix.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-30">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-31" data-prompt-category="tasks" data-prompt-search="Task: CI/CD Pipeline &amp; Harness Step Automated container build, Trivy vulnerability scanning, SonarQube quality gate, canary rollouts">
-  <input id="brick-31" type="checkbox" data-prompt-url="/prompts/tasks/generate-harness-step.html" data-prompt-title="Task: CI/CD Pipeline &amp; Harness Step">
-  <span>
-    <strong><a href="/prompts/tasks/generate-harness-step.html">Task: CI/CD Pipeline & Harness Step</a></strong>
-    <small>tasks · generate-harness-step.md</small>
-    <span>Automated container build, Trivy vulnerability scanning, SonarQube quality gate, canary rollouts</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Security Audit Assess code or a diff for security weaknesses and actionable remediation.">
+  <input id="brick-31" type="checkbox" aria-label="Add Security Audit to the combined prompt" data-prompt-url="/prompts/4-task-specification/code-review/security-audit.html" data-prompt-title="Security Audit" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/code-review/security-audit.html">Security Audit</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · security-audit.md</small>
+    <p>Assess code or a diff for security weaknesses and actionable remediation.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-31">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-32" data-prompt-category="tasks" data-prompt-search="Task: Unit &amp; Integration Test Suite Unit and integration tests with Mockito, Testcontainers, and boundary coverage">
-  <input id="brick-32" type="checkbox" data-prompt-url="/prompts/testing/generate-test-suite.html" data-prompt-title="Task: Unit &amp; Integration Test Suite">
-  <span>
-    <strong><a href="/prompts/testing/generate-test-suite.html">Task: Unit & Integration Test Suite</a></strong>
-    <small>tasks · generate-test-suite.md</small>
-    <span>Unit and integration tests with Mockito, Testcontainers, and boundary coverage</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Sprint Status Summary Summarize live sprint progress, risks, blockers, and next steps for stakeholders.">
+  <input id="brick-32" type="checkbox" aria-label="Add Sprint Status Summary to the combined prompt" data-prompt-url="/prompts/4-task-specification/jira/sprint-status-summary.html" data-prompt-title="Sprint Status Summary" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/jira/sprint-status-summary.html">Sprint Status Summary</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · sprint-status-summary.md</small>
+    <p>Summarize live sprint progress, risks, blockers, and next steps for stakeholders.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-32">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-33" data-prompt-category="tasks" data-prompt-search="Task: Generate RESTful API Controller OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotency, pagination">
-  <input id="brick-33" type="checkbox" data-prompt-url="/prompts/tasks/generate-controller.html" data-prompt-title="Task: Generate RESTful API Controller">
-  <span>
-    <strong><a href="/prompts/tasks/generate-controller.html">Task: Generate RESTful API Controller</a></strong>
-    <small>tasks · generate-controller.md</small>
-    <span>OpenAPI 3 tags, RFC 7807 ProblemDetail error responses, idempotency, pagination</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="System Design Document Draft a structured technical design for a system or feature, ready for team review.">
+  <input id="brick-33" type="checkbox" aria-label="Add System Design Document to the combined prompt" data-prompt-url="/prompts/4-task-specification/architecture/system-design-doc.html" data-prompt-title="System Design Document" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/architecture/system-design-doc.html">System Design Document</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · system-design-doc.md</small>
+    <p>Draft a structured technical design for a system or feature, ready for team review.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-33">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-34" data-prompt-category="testing" data-prompt-search="Unit Test Generator Generate focused unit tests using the project&#39;s framework and established conventions.">
-  <input id="brick-34" type="checkbox" data-prompt-url="/prompts/testing/unit-test-generator.html" data-prompt-title="Unit Test Generator">
-  <span>
-    <strong><a href="/prompts/testing/unit-test-generator.html">Unit Test Generator</a></strong>
-    <small>testing · unit-test-generator.md</small>
-    <span>Generate focused unit tests using the project's framework and established conventions.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Technical Spec Page Draft a review-ready Confluence technical specification from supplied context.">
+  <input id="brick-34" type="checkbox" aria-label="Add Technical Spec Page to the combined prompt" data-prompt-url="/prompts/4-task-specification/confluence/technical-spec-page.html" data-prompt-title="Technical Spec Page" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/confluence/technical-spec-page.html">Technical Spec Page</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · technical-spec-page.md</small>
+    <p>Draft a review-ready Confluence technical specification from supplied context.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-34">Preview</button>
+</article>
 
-<label class="brick-card" for="brick-35" data-prompt-category="testing" data-prompt-search="Edge Case Finder Find missing edge cases and failure scenarios in a specification or implementation.">
-  <input id="brick-35" type="checkbox" data-prompt-url="/prompts/testing/edge-case-finder.html" data-prompt-title="Edge Case Finder">
-  <span>
-    <strong><a href="/prompts/testing/edge-case-finder.html">Edge Case Finder</a></strong>
-    <small>testing · edge-case-finder.md</small>
-    <span>Find missing edge cases and failure scenarios in a specification or implementation.</span>
-  </span>
-</label>
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="Unit Test Generator Generate focused unit tests using the project&#39;s framework and established conventions.">
+  <input id="brick-35" type="checkbox" aria-label="Add Unit Test Generator to the combined prompt" data-prompt-url="/prompts/4-task-specification/testing/unit-test-generator.html" data-prompt-title="Unit Test Generator" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/testing/unit-test-generator.html">Unit Test Generator</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · unit-test-generator.md</small>
+    <p>Generate focused unit tests using the project's framework and established conventions.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-35">Preview</button>
+</article>
+
+<article class="brick-card" data-prompt-category="Layer 4: Task Specification" data-prompt-search="User Story Generator Turn a stakeholder request into user stories with explicit acceptance criteria.">
+  <input id="brick-36" type="checkbox" aria-label="Add User Story Generator to the combined prompt" data-prompt-url="/prompts/4-task-specification/requirements/user-story-generator.html" data-prompt-title="User Story Generator" data-prompt-layer="Layer 4: Task Specification">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/4-task-specification/requirements/user-story-generator.html">User Story Generator</a></strong>
+    <small>Layer 4: Task Specification · v1.0.0 · user-story-generator.md</small>
+    <p>Turn a stakeholder request into user stories with explicit acceptance criteria.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-36">Preview</button>
+</article>
+
+<article class="brick-card" data-prompt-category="Layer 5: Output Format" data-prompt-search="Output Format: Strict Clean Code Enforces a single markdown code block, production-ready syntax, zero conversational fluff">
+  <input id="brick-37" type="checkbox" aria-label="Add Output Format: Strict Clean Code to the combined prompt" data-prompt-url="/prompts/5-output-format/output-format-clean-code.html" data-prompt-title="Output Format: Strict Clean Code" data-prompt-layer="Layer 5: Output Format">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/5-output-format/output-format-clean-code.html">Output Format: Strict Clean Code</a></strong>
+    <small>Layer 5: Output Format · v1.0.0 · output-format-clean-code.md</small>
+    <p>Enforces a single markdown code block, production-ready syntax, zero conversational fluff</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-37">Preview</button>
+</article>
+
+<article class="brick-card" data-prompt-category="Layer 5: Output Format" data-prompt-search="Output Format: Implementation Handoff Standardize concise implementation results, verification, and unresolved assumptions.">
+  <input id="brick-38" type="checkbox" aria-label="Add Output Format: Implementation Handoff to the combined prompt" data-prompt-url="/prompts/5-output-format/response-format.html" data-prompt-title="Output Format: Implementation Handoff" data-prompt-layer="Layer 5: Output Format">
+  <div class="brick-card-details">
+    <strong><a href="/prompts/5-output-format/response-format.html">Output Format: Implementation Handoff</a></strong>
+    <small>Layer 5: Output Format · v1.0.0 · response-format.md</small>
+    <p>Standardize concise implementation results, verification, and unresolved assumptions.</p>
+  </div>
+  <button class="preview-brick secondary" type="button" data-preview-checkbox="brick-38">Preview</button>
+</article>
 
   </div>
+  <dialog id="prompt-preview" aria-labelledby="prompt-preview-title">
+    <div class="preview-header">
+      <h3 id="prompt-preview-title">Prompt preview</h3>
+      <button id="close-preview" class="secondary" type="button">Close</button>
+    </div>
+    <p id="preview-status" role="status" aria-live="polite"></p>
+    <pre id="prompt-preview-content"></pre>
+    <div class="preview-actions">
+      <button id="add-previewed-brick" type="button" disabled>Add this brick</button>
+    </div>
+  </dialog>
   <p id="no-bricks-found" hidden>No prompt bricks match these filters.</p>
   <div class="builder-actions">
     <button id="build-prompt" type="button">Build combined prompt</button>
@@ -443,19 +502,24 @@
   .brick-card {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     gap: 1rem;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     padding: 1rem;
-    cursor: pointer;
     font-size: 0.9rem;
   }
 
   .brick-card input {
-    margin-top: 0.35rem;
+    flex: 0 0 auto;
+    margin-top: 0.25rem;
   }
 
-  .brick-card span span,
+  .brick-card-details {
+    flex: 1;
+    min-width: 0;
+  }
+
   .brick-card small {
     display: block;
     color: #64748b;
@@ -463,6 +527,74 @@
 
   .brick-card strong {
     display: block;
+  }
+
+  .brick-card p {
+    margin: 0.35rem 0 0;
+    color: #64748b;
+  }
+
+  .preview-brick {
+    flex: 0 0 auto;
+  }
+
+  #prompt-preview {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: min(54rem, calc(100vw - 2rem));
+    min-width: 0;
+    height: fit-content;
+    min-height: 0;
+    max-width: calc(100vw - 2rem);
+    max-height: min(85vh, 52rem);
+    margin: auto;
+    padding: 1.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: inherit;
+    background: Canvas;
+  }
+
+  #prompt-preview[open] {
+    display: flex;
+  }
+
+  #prompt-preview::backdrop {
+    background: rgb(15 23 42 / 60%);
+  }
+
+  .preview-header,
+  .preview-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .preview-header h3 {
+    margin: 0;
+  }
+
+  #prompt-preview-content {
+    max-height: 60vh;
+    overflow: auto;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: 0.9rem/1.5 ui-monospace, monospace;
+  }
+
+  #preview-status:empty {
+    display: none;
+  }
+
+  .preview-actions {
+    justify-content: flex-end;
   }
 
   .builder-actions {
@@ -498,6 +630,56 @@
   #combined-prompt {
     font-family: ui-monospace, monospace;
     font-size: 0.85rem;
+  }
+
+  @media (max-width: 36rem) {
+    .brick-card {
+      flex-wrap: wrap;
+    }
+
+    .brick-card-details {
+      flex-basis: calc(100% - 3rem);
+    }
+
+    .preview-brick {
+      margin-left: 2rem;
+    }
+
+    #prompt-preview {
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+      max-height: calc(100vh - 1rem);
+      max-height: calc(100dvh - 1rem);
+      padding: 0.75rem;
+    }
+
+    .preview-header {
+      align-items: flex-start;
+    }
+
+    .preview-header h3 {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    #prompt-preview-content {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      box-sizing: border-box;
+      max-height: 50vh;
+      padding: 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .preview-actions {
+      width: 100%;
+    }
+
+    .preview-actions button {
+      width: 100%;
+      margin-bottom: 0;
+    }
   }
 
 </style>

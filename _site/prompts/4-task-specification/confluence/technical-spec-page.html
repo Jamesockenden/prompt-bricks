@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Spec Page | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Prompt Bricks</a></li>
+        <li><a href="/prompt-store/">Prompt Store</a></li>
+        <li><a href="https://github.com/Jamesockenden/prompt-bricks" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Technical Spec Page</h1>
+    <div class="brick-meta">
+      <span>Layer: <strong>Layer 4: Task Specification</strong></span>
+      <span>·</span>
+      <span>Version: <strong>1.0.0</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/4-task-specification/confluence/technical-spec-page.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Draft a review-ready Confluence technical specification from supplied context.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h1 id="brick-technical-spec-page">Brick: Technical Spec Page</h1>
+
+<p><strong>Purpose:</strong> Draft a technical design/specification for Confluence from a problem description, ready for team review.</p>
+
+<h2 id="prompt">Prompt</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Draft a technical spec for {{space}} for the following work.
+
+Use this structure:
+1. Overview (problem + goal, 2-3 sentences)
+2. Background / context
+3. Proposed approach
+4. Scope (in scope / out of scope, as two bullet lists)
+5. Risks and open questions
+6. Rollout plan (if relevant)
+7. Reviewers / stakeholders to tag
+
+Base the technical details only on what's provided below and any linked
+pages — flag anything you had to assume.
+
+Work description:
+"""
+{{work_description}}
+"""
+
+Related pages/context to draw on (use only if their contents are supplied or accessible): {{related_links}}
+</code></pre></div></div>
+
+<p>Return the draft without claiming it was published. Publish only when explicitly requested and an authorized Confluence integration is available.</p>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{{space}}</code>: target Confluence space</li>
+  <li><code class="language-plaintext highlighter-rouge">{{work_description}}</code>: the problem, feature, or system being designed</li>
+  <li><code class="language-plaintext highlighter-rouge">{{related_links}}</code>: smart links to related pages, ADRs, or prior art (optional)</li>
+</ul>
+
+<h2 id="usage-notes">Usage notes</h2>
+
+<ul>
+  <li>Provide relevant linked-page content when the assistant cannot access those pages directly.</li>
+</ul>
+
+<h2 id="example-composition">Example composition</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ Brick: System Design Document ] + [ Brick: Technical Spec Page ]
+</code></pre></div></div>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

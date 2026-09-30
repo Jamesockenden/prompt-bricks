@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceptance Criteria (Gherkin) | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Prompt Bricks</a></li>
+        <li><a href="/prompt-store/">Prompt Store</a></li>
+        <li><a href="https://github.com/Jamesockenden/prompt-bricks" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <article>
+  <header>
+    <h1>Acceptance Criteria (Gherkin)</h1>
+    <div class="brick-meta">
+      <span>Layer: <strong>Layer 4: Task Specification</strong></span>
+      <span>·</span>
+      <span>Version: <strong>1.0.0</strong></span>
+      <span>·</span>
+      <span>Path: <code>prompts/4-task-specification/requirements/acceptance-criteria-gherkin.md</code></span>
+      <span>·</span>
+      <span>Author: Prompt Bricks contributors</span>
+    </div>
+    <p>Convert a feature request into clear, testable Given/When/Then acceptance criteria.</p>
+  </header>
+
+  
+
+  <section class="prompt-content">
+    <h3>Prompt Template</h3>
+    <h1 id="brick-acceptance-criteria-gherkin">Brick: Acceptance Criteria (Gherkin)</h1>
+
+<p><strong>Category:</strong> requirements
+<strong>Purpose:</strong> Convert a user story or feature description into Given/When/Then acceptance criteria that testers and developers can act on directly.</p>
+
+<h2 id="prompt">Prompt</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Convert the user story below into Gherkin-style acceptance criteria.
+
+Rules:
+- Use Given / When / Then / And syntax
+- Write one scenario per distinct behaviour (happy path, edge cases, error
+  states)
+- Keep each step concrete and testable — no vague terms like "works
+  correctly"
+- Flag any ambiguity in the source story as a "Clarification needed" note
+  instead of guessing
+
+User story:
+"""
+{{user_story}}
+"""
+
+Additional context / constraints: {{context}}
+</code></pre></div></div>
+
+<h2 id="variables">Variables</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{{user_story}}</code>: the story to convert (ideally already in “As a… I want… so that…” form)</li>
+  <li><code class="language-plaintext highlighter-rouge">{{context}}</code>: business rules, constraints, or systems involved (optional)</li>
+</ul>
+
+<h2 id="example-composition">Example composition</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ Brick: User Story Generator ] + [ Brick: Acceptance Criteria (Gherkin) ] + [ Brick: Unit Test Generator ]
+</code></pre></div></div>
+
+  </section>
+</article>
+  </main>
+</body>
+</html>

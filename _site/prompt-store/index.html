@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Store | prompt-brick-service - Modular Prompt Repository</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --pico-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --pico-font-size: 90%;
+    }
+    pre { background: #0f172a; color: #f8fafc; padding: 1.25rem; border-radius: 8px; overflow-x: auto; }
+    .brick-meta { display: flex; gap: 1rem; color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 4px; background: #e2e8f0; font-size: 0.75rem; }
+    nav { margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+    main { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav>
+      <ul>
+        <li><strong>prompt-brick-service - Modular Prompt Repository</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Prompt Bricks</a></li>
+        <li><a href="/prompt-store/">Prompt Store</a></li>
+        <li><a href="https://github.com/Jamesockenden/prompt-bricks" target="_blank">Git Repository</a></li>
+      </ul>
+    </nav>
+    <h1>Prompt Store</h1>
+<p>Versioned, complete prompt snapshots for repeatable work. Each entry records its own version and the prompt-brick versions it was built from. Use Git history to review earlier snapshot revisions.</p>
+
+<section class="prompt-store-list" aria-label="Complete prompts">
+  
+  
+  <article class="stored-prompt">
+    <header>
+      <h2>Production Spring Boot REST Controller</h2>
+      <p>Implement and test a production-ready REST resource using the repository&#39;s existing conventions.</p>
+      <p class="store-meta">
+        <span>Version <strong>1.0.0</strong></span>
+        <span class="badge">Stable</span>
+      </p>
+    </header>
+    <details>
+      <summary>Preview complete prompt</summary>
+      <label for="stored-prompt-spring-boot-rest-controller">Prompt snapshot</label>
+      <textarea id="stored-prompt-spring-boot-rest-controller" rows="20" readonly># Role and Persona
+
+Act as a principal software engineer specializing in Java and Spring Boot services. Work within the scope requested and prioritize maintainability, security, reliability, and clear operational behavior.
+
+# Base Instructions
+
+- Preserve existing public interfaces and observable behavior unless a change is explicitly required. Explain compatibility impacts.
+- Match established repository architecture, naming, formatting, error handling, and dependency choices. Do not add dependencies when existing capabilities suffice.
+- Validate inputs and handle relevant edge cases, failure modes, and security implications explicitly.
+- Add or update focused tests using the repository&#39;s existing test framework and conventions.
+- Keep the change scoped. Do not fabricate repository facts, test results, or completed actions.
+- Run relevant checks and report their actual results. State clearly when a check cannot be run.
+
+# Context: Technology and Runtime
+
+- Language: Java 21.
+- Framework: Spring Boot 3.3.x, using the web programming model already present in the repository.
+- Prefer immutable records for request and response DTOs where they fit existing patterns.
+- Use Jakarta validation, constructor-based dependency injection, and ISO-8601 date/time serialization when supported by the existing stack.
+- Target resource: {{resource_name}}.
+- Base route: {{endpoint_base_path}}.
+- Repository-specific packages, services, persistence, test framework, and error conventions: inspect the repository and follow existing implementations; treat anything not verified in source as unknown.
+
+# Task Specification
+
+Implement a complete REST controller for `{{resource_name}}` at `{{endpoint_base_path}}`.
+
+Provide:
+- `POST {{endpoint_base_path}}` to create a resource; return 201 Created and a Location header.
+- `GET {{endpoint_base_path}}/{id}` to retrieve a resource; return 200 or the repository&#39;s established not-found response.
+- `GET {{endpoint_base_path}}` to list resources using the repository&#39;s established pagination contract.
+- `PUT {{endpoint_base_path}}/{id}` to replace a resource and preserve the repository&#39;s concurrency or optimistic-locking behavior.
+- `DELETE {{endpoint_base_path}}/{id}` to delete or deactivate the resource according to existing domain rules; make retries safe where the contract requires it.
+- Request validation, documented endpoint contracts, and consistent error responses matching existing project conventions.
+- Tests for successful operations, invalid requests, missing resources, boundary cases, and relevant failure paths.
+
+Before editing, inspect the existing controller, service, DTO, persistence, API documentation, and test patterns. Reuse existing components. Do not invent fields, business rules, or persistence behavior; ask for clarification or identify the assumption if the repository and request do not define them.
+
+# Output Format
+
+Return:
+1. A concise outcome.
+2. The changed files and important behavior.
+3. Checks actually run and their results.
+4. Assumptions or blockers.
+
+Include complete code changes in the repository rather than illustrative fragments. Do not claim unrun tests passed.
+</textarea>
+      <p><strong>Built from:</strong> 1-role-and-persona/principal-architect.md@1.0.0, 2-base-instructions/engineering-quality-gates.md@1.0.0, 3-context-format/java21-spring3.md@1.0.0, 4-task-specification/coding/generate-controller.md@1.0.0, 4-task-specification/testing/unit-test-generator.md@1.0.0, 5-output-format/response-format.md@1.0.0</p>
+      <p><strong>Version notes:</strong> Initial reviewed snapshot for Java 21 and Spring Boot 3.3.</p>
+    </details>
+    <div class="store-actions">
+      <button type="button" data-copy-prompt="stored-prompt-spring-boot-rest-controller">Copy prompt</button>
+      <span role="status" aria-live="polite"></span>
+    </div>
+  </article>
+  
+  <article class="stored-prompt">
+    <header>
+      <h2>Security-Focused Code Review</h2>
+      <p>Review a supplied change for exploitable security weaknesses and report evidence-backed, actionable findings.</p>
+      <p class="store-meta">
+        <span>Version <strong>1.0.0</strong></span>
+        <span class="badge">Stable</span>
+      </p>
+    </header>
+    <details>
+      <summary>Preview complete prompt</summary>
+      <label for="stored-prompt-secure-code-review">Prompt snapshot</label>
+      <textarea id="stored-prompt-secure-code-review" rows="20" readonly># Role and Persona
+
+Act as a principal application security engineer. Be rigorous, evidence-driven, and focused on exploitable risks in the supplied change and its reachable context.
+
+# Base Instructions
+
+- Report only issues supported by the supplied code, configuration, or execution path. Do not guess at vulnerabilities.
+- Trace relevant inputs to security-sensitive operations and consider authorization boundaries, trust boundaries, and failure behavior.
+- Do not modify code during this review. Propose minimal, concrete remediations.
+- Avoid reporting style concerns unless they create a concrete security impact.
+- State review scope and any missing context that limits confidence.
+
+# Context Format
+
+- Repository and relevant paths: {{repository_and_paths}}
+- Languages, frameworks, and versions: {{technology_stack}}
+- Authentication, authorization, and trust boundaries: {{security_context}}
+- Relevant configuration, dependencies, and data flows: {{relevant_context}}
+- Change or code to review:
+
+```text
+{{code_or_diff}}
+```
+
+Treat omitted context as unknown. Do not assume that external controls exist unless they are shown or described.
+
+# Task Specification
+
+Review the supplied change for:
+
+- Injection risks, including SQL, command, template, and log injection.
+- Missing or incorrect authentication and authorization checks.
+- Sensitive data exposure, including secrets and personal data in logs or errors.
+- Unsafe deserialization, dangerous use of untrusted input, and missing validation or output encoding.
+- Cryptographic misuse, insecure defaults, and dependency or configuration risks visible in scope.
+- Relevant race conditions, business-logic flaws, or resource-exhaustion paths.
+
+For each finding, provide severity (Critical, High, Medium, or Low), file and line or code location, the vulnerable behavior, realistic exploit preconditions and impact, and a specific remediation. Order findings by severity, then confidence.
+
+Do not include a category merely to fill space. If no actionable issues are found, say so and summarize what was reviewed. Distinguish confirmed findings from concerns that need more evidence.
+
+# Output Format
+
+Start with a brief scope statement and overall result. Then list findings in this format:
+
+| Severity | Location | Finding | Exploitability and impact | Recommended fix | Confidence |
+|---|---|---|---|---|---|
+
+End with important limitations or unreviewed areas. If there are no findings, say &quot;No actionable security findings identified in the supplied scope.&quot; Do not claim to have run tools or tests unless you actually did.
+</textarea>
+      <p><strong>Built from:</strong> 1-role-and-persona/principal-architect.md@1.0.0, 2-base-instructions/engineering-quality-gates.md@1.0.0, 3-context-format/codebase-context.md@1.0.0, 4-task-specification/code-review/security-audit.md@1.0.0, 5-output-format/response-format.md@1.0.0</p>
+      <p><strong>Version notes:</strong> Initial reviewed snapshot covering common application security risks and evidence-based findings.</p>
+    </details>
+    <div class="store-actions">
+      <button type="button" data-copy-prompt="stored-prompt-secure-code-review">Copy prompt</button>
+      <span role="status" aria-live="polite"></span>
+    </div>
+  </article>
+  
+</section>
+
+<style>
+  .prompt-store-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .stored-prompt {
+    padding: 1.25rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+  }
+
+  .stored-prompt h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .store-meta,
+  .store-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .stored-prompt textarea {
+    font-family: ui-monospace, monospace;
+    font-size: 0.85rem;
+  }
+
+  .store-actions button {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  .store-actions [role="status"] {
+    color: #166534;
+    font-size: 0.9rem;
+  }
+</style>
+
+<script src="/assets/js/prompt-store.js" defer></script>
+
+  </main>
+</body>
+</html>
